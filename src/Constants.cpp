@@ -10,7 +10,7 @@
 
 Constants::Constants() {
 	// TODO Auto-generated constructor stub
-
+	reloadFile();
 }
 
 

@@ -1,20 +1,22 @@
 #include "SixWheelDrive.h"
 //#include "../RobotMap.h"
 
-SixWheelDrive::SixWheelDrive() :
+SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 		Subsystem("ExampleSubsystem")
 {
-	leftBack = new Talon(2);
-	rightBack  = new Talon(1);
-	leftFront  = new Talon(3);
-	rightFront  = new Talon(Constants->Get("frontRightDrive"));
-	leftMid = new Talon(5);
-	rightMid = new Talon (6);
+	constants = LucielleBall;
+	leftBack = new Talon(constants->Get("backLeftDrive"));
+	rightBack  = new Talon(constants->Get("backRightDrive"));
+	leftFront  = new Talon(constants->Get("frontLeftDrive"));
+	rightFront  = new Talon(constants->Get("frontRightDrive"));
+	leftMid = new Talon(constants->Get("leftMidDrive"));
+	rightMid = new Talon (constants->Get("rightMidDrive"));
 	Drivestick = new Joystick(0);
-	Operator = new Joystick(8);
 	Drive = new RobotDrive (leftFront, leftBack, rightFront, rightBack);
 	shifter = new Solenoid(7);
 	ShifterTest = false;
+	RightWheelEncoder = new Encoder(constants->Get("RightEncoderA"), constants->Get("RightEncoderB"));
+	LeftWheelEncoder = new Encoder(constants->Get("LeftEncoderA"), constants->Get("LeftEncoderB"));
 
 }
 
@@ -25,9 +27,21 @@ void SixWheelDrive::InitDefaultCommand()
 	//precision speed
 }
 
+long SixWheelDrive::LeftEncoder(){
+
+
+
+	return LeftWheelEncoder->Get();
+}
+long SixWheelDrive::RightEncoder(){
+
+
+	return RightWheelEncoder->Get();
+}
 void SixWheelDrive::arcadeDrive(float Y, float X){
 	Drive->ArcadeDrive(Y, X, false);
 	// do stuff
+
 	rightMid->Set(rightFront->Get());
 	leftMid->Set(leftFront->Get());
 
@@ -36,6 +50,7 @@ void SixWheelDrive::arcadeDrive(float Y, float X){
 
 	if (Drivestick->GetRawButton(5))//low gear
 		ShifterTest = false;
+
 
 	shifter->Set(ShifterTest);
 

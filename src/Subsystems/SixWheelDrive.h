@@ -6,6 +6,9 @@
 #include <RobotDrive.h>
 #include <Joystick.h>
 #include <Solenoid.h>
+#include <Encoder.h>
+#include <Constants.h>
+const double EncoderReset = 0;
 
 class SixWheelDrive: public Subsystem
 {
@@ -18,15 +21,20 @@ private:
 	Talon *rightMid;
 	Talon *leftMid;
 	Joystick * Drivestick;
-	Joystick *Operator
 	Solenoid *shifter;
+	Encoder *RightWheelEncoder;
+	Encoder *LeftWheelEncoder;
 	bool ShifterTest;
+	Constants *constants;
+
 
 
 public:
-	SixWheelDrive();
+	SixWheelDrive(Constants *LucielleBall);
 
 	void arcadeDrive(float x, float y);
+	long LeftEncoder();
+	long RightEncoder();
 
 	void InitDefaultCommand();
 };

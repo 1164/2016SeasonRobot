@@ -1,8 +1,11 @@
-frontRightDrive		3
-frontLeftDrive 		4
+frontRightDrive		0
+frontLeftDrive 		1
 backRightDrive 		2
-backLeftDrive 		5
-rightMidDrive 		6
-leftMidDrive 		7
-
+backLeftDrive 		3
+rightMidDrive 		8
+leftMidDrive 		9
+LeftEncoderA		00
+LeftEncoderB		11
+RightEncoderA		22
+RightEncoderB		33
 shooterButton		7
