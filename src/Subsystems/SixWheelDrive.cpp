@@ -5,12 +5,12 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 		Subsystem("ExampleSubsystem")
 {
 	constants = LucielleBall;
-	leftBack = new Talon(constants->Get("backLeftDrive"));
-	rightBack  = new Talon(constants->Get("backRightDrive"));
-	leftFront  = new Talon(constants->Get("frontLeftDrive"));
-	rightFront  = new Talon(constants->Get("frontRightDrive"));
-	leftMid = new Talon(constants->Get("leftMidDrive"));
-	rightMid = new Talon (constants->Get("rightMidDrive"));
+	leftBack = new VictorSP(constants->Get("backLeftDrive"));
+	rightBack  = new VictorSP(constants->Get("backRightDrive"));
+	leftFront  = new VictorSP(constants->Get("frontLeftDrive"));
+	rightFront  = new VictorSP(constants->Get("frontRightDrive"));
+	leftMid = new VictorSP(constants->Get("leftMidDrive"));
+	rightMid = new VictorSP (constants->Get("rightMidDrive"));
 	Drivestick = new Joystick(0);
 	Drive = new RobotDrive (leftFront, leftBack, rightFront, rightBack);
 	shifter = new Solenoid(7);

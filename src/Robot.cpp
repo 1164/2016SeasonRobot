@@ -3,9 +3,11 @@
 #include <Joystick.h>
 #include <TalonSRX.h>
 #include <Talon.h>
+#include <VictorSP.h>
 #include <Speedcontroller.h>
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
+#include <Solenoid.h>
 
 
 class Robot: public IterativeRobot
@@ -14,9 +16,10 @@ private:
 	LiveWindow *lw = LiveWindow::GetInstance();
 	Joystick *Drivestick;
 	Constants *constants;
-	Talon *launcher;
+	Talon *shooter;
 	SixWheelDrive *Drive;
 	SendableChooser *chooser;
+	Solenoid *solenoid;
 	const std::string autoNameDefault = "Default";
 	const std::string autoNameCustom = "My Auto";
 	std::string autoSelected;
@@ -27,7 +30,8 @@ private:
 		constants = new Constants();
 		Drivestick = new Joystick(0);
 		lw = LiveWindow::GetInstance();
-		launcher  = new Talon(4);
+		shooter  = new Talon(4);
+		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);
 		chooser = new SendableChooser();
@@ -83,11 +87,13 @@ private:
 		//right trigger 7
 		if (Drivestick->GetRawButton(constants->Get("shooterButton"))==true){
 			//when button is pressed, motor moves. -Sep
-			launcher -> Set(1);
-		}else{
+			shooter -> Set(1);
+		} else {
 			//Stops the motor when button not pressed -Sep
-			launcher->Set(0);
+			shooter->Set(0);
 		}
+
+		if (Drivestick->GetRawButton())
 	}
 
 	void TestPeriodic()

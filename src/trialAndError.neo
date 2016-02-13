@@ -8,4 +8,20 @@ LeftEncoderA		00
 LeftEncoderB		11
 RightEncoderA		22
 RightEncoderB		33
+
+
+shooterPGain		0
+shooterIGain		1
+shooterDGain		2
+shooterStateCARRY	
+shooterStateARMED	
+shooterStateSHOOT	
+shooterStateINTAKE	
 shooterButton		7
+
+
+
+RollerIntake		15
+RollerOuttake		16
+RollerUp			17
+RollerDown			18
