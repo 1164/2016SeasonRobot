@@ -7,6 +7,7 @@
 
 #include <Constants.h>
 #include <fstream>
+#include <DriverStation.h>
 
 Constants::Constants() {
 	// TODO Auto-generated constructor stub
@@ -20,7 +21,7 @@ void Constants::reloadFile(){
 	{
 		string line;
 		double value;
-		while(myfile.eof()){
+		while(!myfile.eof()){
 			myfile >> line >> value;
 			map.insert (pair<string, double> (line, value));
 
@@ -29,5 +30,10 @@ void Constants::reloadFile(){
 }
 
 double Constants::Get(string constantName){
+	if (map.count(constantName)<=0){
+		DriverStation::GetInstance().ReportError("Cannot find constantName "+constantName);
+		return -1;
+	}
+
 	return map.at (constantName);
 }

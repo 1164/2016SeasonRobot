@@ -28,6 +28,11 @@ shooterMotor2		26
 
 shooterDigitalIndex	27
 
+CARRYSetPoint		2.0
+INTAKESetPoint		3.0
+ARMEDSetPoint		4.0
+SHOOTSetPoint		5.0
+
 
 RollerIntake		15
 RollerOuttake		16
