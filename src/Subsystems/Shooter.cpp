@@ -20,6 +20,10 @@ Shooter::Shooter(Constants *ILoveLucy) :
 	// Enable() - Enables the PID controller.
 }
 
+bool Shooter::AtSetpoint(){
+	return false;
+}
+
 double Shooter::ReturnPIDInput()
 {
 	if (shooterIndex->Get()){
