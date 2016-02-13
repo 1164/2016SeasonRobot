@@ -1,8 +1,8 @@
 #include "ShooterIntake.h"
-#include "../RobotMap.h"
+//#include "../RobotMap.h"
 
 ShooterIntake::ShooterIntake() :
-		Subsystem("ExampleSubsystem")
+		Subsystem("ShoooterIntake")
 {
 
 }
@@ -15,7 +15,7 @@ void ShooterIntake::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void Update(bool IntakeButton, bool PrepButton, bool ShootButton){
+void ShooterIntake::Update(bool IntakeButton, bool PrepButton, bool ShootButton){
 	switch(state){
 		case CARRY:
 			//default state in which the other states may be accessed from

@@ -93,7 +93,9 @@ private:
 			shooter->Set(0);
 		}
 
-		if (Drivestick->GetRawButton())
+		if (Drivestick->GetRawButton(6)){
+			//have fun :)
+		}
 	}
 
 	void TestPeriodic()

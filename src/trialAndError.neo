@@ -13,12 +13,20 @@ RightEncoderB		33
 shooterPGain		0
 shooterIGain		1
 shooterDGain		2
+
 shooterStateCARRY	
 shooterStateARMED	
 shooterStateSHOOT	
 shooterStateINTAKE	
 shooterButton		7
 
+shooterEncoderA		
+shooterEncoderB		
+
+shooterMotor1		25
+shooterMotor2		26
+
+shooterDigitalIndex	27
 
 
 RollerIntake		15

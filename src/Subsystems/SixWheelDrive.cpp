@@ -2,7 +2,7 @@
 //#include "../RobotMap.h"
 
 SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
-		Subsystem("ExampleSubsystem")
+		Subsystem("SixWheeelDrive")
 {
 	constants = LucielleBall;
 	leftBack = new VictorSP(constants->Get("backLeftDrive"));
