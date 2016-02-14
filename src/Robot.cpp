@@ -8,10 +8,11 @@
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
 #include <Solenoid.h>
-
+#include "AHRS.h"
 
 class Robot: public IterativeRobot
 {
+
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
 	Joystick *Drivestick;
@@ -23,6 +24,7 @@ private:
 	const std::string autoNameDefault = "Default";
 	const std::string autoNameCustom = "My Auto";
 	std::string autoSelected;
+
 
 	void RobotInit()
 	{
@@ -88,7 +90,7 @@ private:
 		//midRight->Set(rightFront->Get());
 
 		//right trigger 7
-		if (Drivestick->GetRawButton(constants->Get("leftMidDrive"))==true){
+		if (Drivestick->GetRawButton(constants->Get("ShooterButton"))==true){
 			//when button is pressed, motor moves. -Sep
 			shooter -> Set(1);
 		} else {
@@ -105,6 +107,7 @@ private:
 	{
 		lw->Run();
 	}
+
 };
 
 START_ROBOT_CLASS(Robot)

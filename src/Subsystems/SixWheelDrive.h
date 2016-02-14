@@ -11,6 +11,7 @@
 #include <VictorSP.h>
 const double EncoderReset = 0;
 #include <Talon.h>
+#include "AHRS.h"
 
 class SixWheelDrive: public Subsystem
 {
@@ -27,7 +28,7 @@ private:
 	Encoder *LeftWheelEncoder;
 	bool ShifterTest;
 	Constants *constants;
-
+	AHRS *ahrs;
 
 
 public:
@@ -39,6 +40,7 @@ public:
 	long RightEncoder();
 
 	void InitDefaultCommand();
+
 };
 
 #endif

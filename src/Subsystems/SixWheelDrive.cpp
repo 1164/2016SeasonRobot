@@ -23,6 +23,20 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	RightWheelEncoder = new Encoder(constants->Get("RightEncoderA"), constants->Get("RightEncoderB"));
 	LeftWheelEncoder = new Encoder(constants->Get("LeftEncoderA"), constants->Get("LeftEncoderB"));
 	Drive->SetSafetyEnabled(false);
+	try {
+		/* Communicate w/navX-MXP via the MXP SPI Bus.                                       */
+		/* Alternatively:  I2C::Port::kMXP, SerialPort::Port::kMXP or SerialPort::Port::kUSB */
+		/* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details.   */
+		ahrs = new AHRS(SPI::Port::kMXP);
+	} catch (std::exception ex ) {
+		std::string err_string = "Error instantiating navX-MXP:  ";
+		err_string += ex.what();
+		DriverStation::ReportError(err_string.c_str());
+	if (ahrs){
+		LiveWindow::GetInstance()->AddSensor("IMU", "Angle", ahrs);
+	}
+	}
+
 }
 
 void SixWheelDrive::InitDefaultCommand()
@@ -61,6 +75,7 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear, bool isLowGea
 	}
 
 	arcadeDrive(Y,X,ShifterTest);
+
 }
 void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
 	Drive->ArcadeDrive(Y, X, false);
@@ -70,5 +85,6 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
 	ShifterTest=isHighGear;
 
 	shifter->Set(ShifterTest);
+	ahrs->GetAngle();
 }
 
