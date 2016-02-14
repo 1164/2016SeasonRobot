@@ -81,11 +81,14 @@ private:
 
 	void TeleopPeriodic()
 	{
-		Drive->arcadeDrive(Drivestick->GetY(), Drivestick->GetX());
+		Drive->arcadeDrive(Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisY")),
+				Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX")),
+				Drivestick->GetRawButton(constants->Get("HighShiftButton")),
+				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 		//midRight->Set(rightFront->Get());
 
 		//right trigger 7
-		if (Drivestick->GetRawButton(constants->Get("shooterButton"))==true){
+		if (Drivestick->GetRawButton(constants->Get("leftMidDrive"))==true){
 			//when button is pressed, motor moves. -Sep
 			shooter -> Set(1);
 		} else {

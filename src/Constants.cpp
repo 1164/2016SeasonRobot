@@ -16,7 +16,7 @@ Constants::Constants() {
 
 
 void Constants::reloadFile(){
-	ifstream myfile("trialAndError.neo");
+	ifstream myfile("/home/lvuser/trialAndError.neo");
 	if (myfile.is_open())
 	{
 		string line;
@@ -31,7 +31,7 @@ void Constants::reloadFile(){
 
 double Constants::Get(string constantName){
 	if (map.count(constantName)<=0){
-		DriverStation::GetInstance().ReportError("Cannot find constantName "+constantName);
+		DriverStation::GetInstance().ReportError("Cannot find constantName "+constantName + "\n");
 		return -1;
 	}
 

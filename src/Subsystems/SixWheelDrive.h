@@ -8,19 +8,20 @@
 #include <Solenoid.h>
 #include <Encoder.h>
 #include <Constants.h>
+#include <VictorSP.h>
 const double EncoderReset = 0;
+#include <Talon.h>
 
 class SixWheelDrive: public Subsystem
 {
 private:
 	RobotDrive *Drive;
-	VictorSP *leftBack;
-	VictorSP *rightBack;
-	VictorSP *rightFront;
-	VictorSP *leftFront;
-	VictorSP *rightMid;
-	VictorSP *leftMid;
-	Joystick * Drivestick;
+	Talon *leftBack;
+	Talon *rightBack;
+	Talon *rightFront;
+	Talon *leftFront;
+	Talon *rightMid;
+	Talon *leftMid;
 	Solenoid *shifter;
 	Encoder *RightWheelEncoder;
 	Encoder *LeftWheelEncoder;
@@ -32,7 +33,8 @@ private:
 public:
 	SixWheelDrive(Constants *LucielleBall);
 
-	void arcadeDrive(float x, float y);
+	void arcadeDrive(float x, float y, bool isHighGear, bool isLowGear);
+	void arcadeDrive(float x, float y, bool isHighGear);
 	long LeftEncoder();
 	long RightEncoder();
 

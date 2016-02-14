@@ -1,27 +1,46 @@
-frontRightDrive		0
+frontRightDrive		3
 frontLeftDrive 		1
 backRightDrive 		2
-backLeftDrive 		3
+backLeftDrive 		0
 rightMidDrive 		8
 leftMidDrive 		9
-LeftEncoderA		00
+LeftEncoderA		0
 LeftEncoderB		11
 RightEncoderA		22
-RightEncoderB		33
+RightEncoderB		21
 
+ShifterSolenoid		7
+
+DriveAxisX			0
+DriveAxisY			1
+
+HighShiftButton		5
+LowShiftButton		7
+
+HighGearYGain		1
+HighGearXGain		1
+LowGearYGain		1
+LowGearXGain		1
+
+leftBackInvert		1
+leftMidInvert		1
+leftFrontInvert		1
+rightBackInvert		1
+rightMidInvert		1
+rightFrontInvert	1
 
 shooterPGain		0
 shooterIGain		1
 shooterDGain		2
 
-shooterStateCARRY	
-shooterStateARMED	
-shooterStateSHOOT	
-shooterStateINTAKE	
+shooterStateCARRY	-1
+shooterStateARMED	-1
+shooterStateSHOOT	-1
+shooterStateINTAKE	-1
 shooterButton		7
 
-shooterEncoderA		
-shooterEncoderB		
+shooterEncoderA		-1
+shooterEncoderB		-1
 
 shooterMotor1		25
 shooterMotor2		26
