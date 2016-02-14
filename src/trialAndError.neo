@@ -43,3 +43,10 @@ RollerEncoderArmB	27
 RollerEncoderInA	20
 RollerEncoderInB	28
 RollerArmControl	21
+
+RollerControlP		1
+RollerControlI		1
+RollerControlD		1
+RollerControlF		0
+RollerControlIzone	0
+RCloseLoopRampRate	0

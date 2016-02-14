@@ -16,6 +16,7 @@ private:
 public:
 	RollerArm(Constants *Ethel);
 	void InitDefaultCommand();
+	void Update(void);
 };
 
 #endif
