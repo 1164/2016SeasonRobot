@@ -5,11 +5,13 @@
 #include "WPILib.h"
 #include "Shooter.h"
 #include <Constants.h>
+#include <Encoder.h>
 
 #define CARRY	0
 #define SHOOT 	2
 #define INTAKE 	1
 #define ARMED	3
+#define RELEASE	4
 
 class ShooterIntake: public Subsystem
 {
@@ -17,12 +19,14 @@ private:
 	int state;
 	Constants *constants;
 	Shooter *shooter;
+	Encoder *rollerEncodeIn;
+	Encoder *rollerArm;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
 	ShooterIntake(Constants *RickyRicardo);
 	void InitDefaultCommand();
-	void Update(bool IntakeButton, bool PrepButton, bool ShootButton);
+	void Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton);
 };
 
 #endif

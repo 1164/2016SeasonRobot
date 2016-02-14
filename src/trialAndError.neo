@@ -38,3 +38,8 @@ RollerIntake		15
 RollerOuttake		16
 RollerUp			17
 RollerDown			18
+RollerEncoderArmA	19
+RollerEncoderArmB	27
+RollerEncoderInA	20
+RollerEncoderInB	28
+RollerArmControl	21
