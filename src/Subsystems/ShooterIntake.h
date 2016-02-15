@@ -4,6 +4,9 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "Shooter.h"
+#include "Shooter.cpp"
+#include "RollerArm.h"
+#include "RollerArm.cpp"
 #include <Constants.h>
 #include <Encoder.h>
 

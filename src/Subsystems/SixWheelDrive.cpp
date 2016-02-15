@@ -1,7 +1,5 @@
 #include "SixWheelDrive.h"
 //#include "../RobotMap.h"
-#include "Driverstation.h"
-#include <cstdio>
 
 
 SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
@@ -81,10 +79,7 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear, bool isLowGea
 
 }
 void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
-	char c[100];
-	sprintf(c,"%f", rightFront->Get());
-	DriverStation::GetInstance().ReportError("Channel of rightBack ");
-	DriverStation::GetInstance().ReportError(c);
+
 	Drive->ArcadeDrive(Y, X, false);
 	rightMid->Set(rightFront->Get());
 	leftMid->Set(leftFront->Get());

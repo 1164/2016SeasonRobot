@@ -18,7 +18,7 @@ private:
 	Joystick *Drivestick;
 	Joystick *Operatorstick;
 	Constants *constants;
-	Talon *shooter;
+	VictorSP *shooter;
 	SixWheelDrive *Drive;
 	SendableChooser *chooser;
 	Solenoid *solenoid;
@@ -34,7 +34,7 @@ private:
 		Drivestick = new Joystick(0);
 		Operatorstick = new Joystick(0);
 		lw = LiveWindow::GetInstance();
-		shooter  = new Talon(7);
+		shooter  = new VictorSP(7);
 		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);

@@ -23,7 +23,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 	switch(state){
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));
-
+			RollerArm->GetEncPosition();
 			//default state in which the other states may be accessed from (done)
 			//shooter in middle position(b) (done/setpoint)
 			//roller up/off
@@ -67,6 +67,9 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//roller goes down to mid to down
 			//roller inverts the roller motor
 			//shooter into intake position
+			if (ReleaseButton == 0 && shooter->AtSetpoint()){
+				state = CARRY;
+			}
 
 			break;
 		default: std::cout<<"default\n"; //no error
