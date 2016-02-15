@@ -22,11 +22,11 @@ HighGearXGain		1
 LowGearYGain		1
 LowGearXGain		1
 
-leftBackInvert		1
-leftMidInvert		1
+leftBackInvert		0
+leftMidInvert		0
 leftFrontInvert		1
-rightBackInvert		1
-rightMidInvert		1
+rightBackInvert		0
+rightMidInvert		0
 rightFrontInvert	1
 
 shooterPGain		0
