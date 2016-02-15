@@ -16,6 +16,7 @@ class Robot: public IterativeRobot
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
 	Joystick *Drivestick;
+	Joystick *Operatorstick;
 	Constants *constants;
 	Talon *shooter;
 	SixWheelDrive *Drive;
@@ -31,6 +32,7 @@ private:
 
 		constants = new Constants();
 		Drivestick = new Joystick(0);
+		Operatorstick = new Joystick(0);
 		lw = LiveWindow::GetInstance();
 		shooter  = new Talon(4);
 		solenoid = new Solenoid(5);
@@ -90,7 +92,7 @@ private:
 		//midRight->Set(rightFront->Get());
 
 		//right trigger 7
-		if (Drivestick->GetRawButton(constants->Get("ShooterButton"))==true){
+		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))==true){
 			//when button is pressed, motor moves. -Sep
 			shooter -> Set(1);
 		} else {
@@ -98,7 +100,7 @@ private:
 			shooter->Set(0);
 		}
 
-		if (Drivestick->GetRawButton(6)){
+		if (Operatorstick->GetRawButton(6)){
 			//have fun :)
 		}
 	}

@@ -5,12 +5,12 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 		Subsystem("SixWheeelDrive")
 {
 	constants = LucielleBall;
-	leftBack = new Talon(constants->Get("backLeftDrive"));
-	rightBack  = new Talon(constants->Get("backRightDrive"));
-	leftFront  = new Talon(constants->Get("frontLeftDrive"));
-	rightFront  = new Talon(constants->Get("frontRightDrive"));
-	leftMid = new Talon(constants->Get("leftMidDrive"));
-	rightMid = new Talon (constants->Get("rightMidDrive"));
+	leftBack = new VictorSP(constants->Get("backLeftDrive"));
+	rightBack  = new VictorSP(constants->Get("backRightDrive"));
+	leftFront  = new VictorSP(constants->Get("frontLeftDrive"));
+	rightFront  = new VictorSP(constants->Get("frontRightDrive"));
+	leftMid = new VictorSP(constants->Get("leftMidDrive"));
+	rightMid = new VictorSP(constants->Get("rightMidDrive"));
 	leftBack->SetInverted(constants->Get("leftBackInvert"));
 	leftMid->SetInverted(constants->Get("leftMidInvert"));
 	leftFront->SetInverted(constants->Get("leftFrontInvert"));

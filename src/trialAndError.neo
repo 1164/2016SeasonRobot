@@ -1,9 +1,9 @@
 frontRightDrive		3
-frontLeftDrive 		1
-backRightDrive 		2
-backLeftDrive 		0
-rightMidDrive 		8
-leftMidDrive 		9
+frontLeftDrive 		0
+rightMidDrive 		5
+leftMidDrive 		2
+backRightDrive 		4
+backLeftDrive 		1
 LeftEncoderA		0
 LeftEncoderB		11
 RightEncoderA		22

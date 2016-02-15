@@ -10,19 +10,19 @@
 #include <Constants.h>
 #include <VictorSP.h>
 const double EncoderReset = 0;
-#include <Talon.h>
+//#include <Talon.h>
 #include "AHRS.h"
 
 class SixWheelDrive: public Subsystem
 {
 private:
 	RobotDrive *Drive;
-	Talon *leftBack;
-	Talon *rightBack;
-	Talon *rightFront;
-	Talon *leftFront;
-	Talon *rightMid;
-	Talon *leftMid;
+	VictorSP *leftBack;
+	VictorSP *rightBack;
+	VictorSP *rightFront;
+	VictorSP *leftFront;
+	VictorSP *rightMid;
+	VictorSP *leftMid;
 	Solenoid *shifter;
 	Encoder *RightWheelEncoder;
 	Encoder *LeftWheelEncoder;
