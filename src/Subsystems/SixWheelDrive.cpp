@@ -1,5 +1,8 @@
 #include "SixWheelDrive.h"
 //#include "../RobotMap.h"
+#include "Driverstation.h"
+#include <cstdio>
+
 
 SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 		Subsystem("SixWheeelDrive")
@@ -11,12 +14,12 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	rightFront  = new VictorSP(constants->Get("frontRightDrive"));
 	leftMid = new VictorSP(constants->Get("leftMidDrive"));
 	rightMid = new VictorSP(constants->Get("rightMidDrive"));
-	leftBack->SetInverted(constants->Get("leftBackInvert"));
-	leftMid->SetInverted(constants->Get("leftMidInvert"));
-	leftFront->SetInverted(constants->Get("leftFrontInvert"));
-	rightBack->SetInverted(constants->Get("rightBackInvert"));
-	rightMid->SetInverted(constants->Get("rightMidInvert"));
-	rightFront->SetInverted(constants->Get("rightFrontInvert"));
+	leftBack->SetInverted(constants->Get("leftBackInvert")== 1);
+	leftMid->SetInverted(constants->Get("leftMidInvert")== 1);
+	leftFront->SetInverted(constants->Get("leftFrontInvert")== 1);
+	rightBack->SetInverted(constants->Get("rightBackInvert")== 1);
+	rightMid->SetInverted(constants->Get("rightMidInvert")== 1);
+	rightFront->SetInverted(constants->Get("rightFrontInvert")== 1);
 	Drive = new RobotDrive (leftFront, leftBack, rightFront, rightBack);
 	shifter = new Solenoid(constants->Get("ShifterSolenoid"));
 	ShifterTest = false;
@@ -31,7 +34,7 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	} catch (std::exception ex ) {
 		std::string err_string = "Error instantiating navX-MXP:  ";
 		err_string += ex.what();
-		DriverStation::ReportError(err_string.c_str());
+		DriverStation::GetInstance().ReportError(err_string.c_str());
 	if (ahrs){
 		LiveWindow::GetInstance()->AddSensor("IMU", "Angle", ahrs);
 	}
@@ -78,6 +81,10 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear, bool isLowGea
 
 }
 void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
+	char c[100];
+	sprintf(c,"%f", rightFront->Get());
+	DriverStation::GetInstance().ReportError("Channel of rightBack ");
+	DriverStation::GetInstance().ReportError(c);
 	Drive->ArcadeDrive(Y, X, false);
 	rightMid->Set(rightFront->Get());
 	leftMid->Set(leftFront->Get());

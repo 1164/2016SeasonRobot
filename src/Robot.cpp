@@ -34,7 +34,7 @@ private:
 		Drivestick = new Joystick(0);
 		Operatorstick = new Joystick(0);
 		lw = LiveWindow::GetInstance();
-		shooter  = new Talon(4);
+		shooter  = new Talon(7);
 		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);
@@ -102,6 +102,7 @@ private:
 
 		if (Operatorstick->GetRawButton(6)){
 			//have fun :)
+			//
 		}
 	}
 

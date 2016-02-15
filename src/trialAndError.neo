@@ -24,10 +24,9 @@ LowGearXGain		1
 
 leftBackInvert		0
 leftMidInvert		0
-leftFrontInvert		1
 rightBackInvert		0
 rightMidInvert		0
-rightFrontInvert	1
+rightFrontInvert	0
 
 shooterPGain		0
 shooterIGain		1
@@ -42,8 +41,8 @@ shooterButton		7
 shooterEncoderA		-1
 shooterEncoderB		-1
 
-shooterMotor1		25
-shooterMotor2		26
+shooterMotor1		8
+shooterMotor2		9
 
 shooterDigitalIndex	27
 

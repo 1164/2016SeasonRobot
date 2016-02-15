@@ -59,6 +59,9 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//intake user
 			//shooter launch
 			//reset to carry position(b)->carry
+			if (ShootButton == 0 && shooter->AtSetpoint()){
+				state = CARRY;
+				}
 			break;
 		case RELEASE:
 			//roller goes down to mid to down
