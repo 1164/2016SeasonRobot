@@ -9,7 +9,7 @@ LeftEncoderB		11
 RightEncoderA		22
 RightEncoderB		21
 
-ShifterSolenoid		7
+ShifterSolenoid		12
 
 DriveAxisX			0
 DriveAxisY			1
@@ -36,7 +36,7 @@ shooterStateCARRY	-1
 shooterStateARMED	-1
 shooterStateSHOOT	-1
 shooterStateINTAKE	-1
-shooterButton		7
+shooterButton		13
 
 shooterEncoderA		-1
 shooterEncoderB		-1
