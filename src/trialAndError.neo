@@ -62,6 +62,8 @@ RollerEncoderInA	20
 RollerEncoderInB	28
 RollerArmControl	21
 
+RollerEncPoint		33
+
 RollerControlP		1
 RollerControlI		1
 RollerControlD		1

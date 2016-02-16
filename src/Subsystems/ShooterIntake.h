@@ -24,6 +24,7 @@ private:
 	Shooter *shooter;
 	Encoder *rollerEncodeIn;
 	Encoder *rollerArm;
+	RollerArm *Rollerarm;
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:

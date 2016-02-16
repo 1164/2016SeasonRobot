@@ -6,6 +6,7 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 {
 		constants = RickyRicardo;
 		shooter = new Shooter(constants);
+		Rollerarm = new RollerArm(constants);
 		state = CARRY;
 		rollerEncodeIn = new Encoder(constants->Get("RollerEncoderInA"), constants->Get("RollerEncoderInB"));
 		rollerArm = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
@@ -23,7 +24,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 	switch(state){
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));
-			rollerArm->Get();
+			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//default state in which the other states may be accessed from (done)
 			//shooter in middle position(b) (done/setpoint)
 			//roller up/off
@@ -37,7 +38,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			break;
 		case INTAKE:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
-			RollerArm
+			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
 			//shooter position fully down (a)
 			//roller mid to down
@@ -45,6 +46,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			break;
 		case ARMED:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("ARMEDSetPoint"));
+			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when armed button is pressed, otherwise carry
 			//lower shooter for prep to shoot
 			//have roller mid/off
@@ -54,6 +56,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			}
 			break;
 		case SHOOT:
+			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//not sure how we are going to proceed with this// shooter->PIDSubsystem::SetSetpoint(constants->Get("SHOOTSetPoint"));
 			//only from armed if shoot button pressed otherwise, carry
 			//roller off/mid
@@ -65,6 +68,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 				}
 			break;
 		case RELEASE:
+			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//roller goes down to mid to down
 			//roller inverts the roller motor
 			//shooter into intake position
