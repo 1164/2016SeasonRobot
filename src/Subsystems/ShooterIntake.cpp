@@ -40,16 +40,16 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
-			//shooter position fully down (a)
-			//roller mid to down
-			//roller suck
+			//shooter position fully down (a)... break beam sensor
+			//roller mid to down...rotary encoder...break beam sensor
+			//roller suck...rotary encoder...motor:VictorSP
 			break;
 		case ARMED:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("ARMEDSetPoint"));
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when armed button is pressed, otherwise carry
 			//lower shooter for prep to shoot
-			//have roller mid/off
+			//have roller mid/off...rotary encoder...break beam sensor
 			//intake used
 			if (ShootButton && shooter->AtSetpoint()){
 				state = SHOOT;
@@ -59,7 +59,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//not sure how we are going to proceed with this// shooter->PIDSubsystem::SetSetpoint(constants->Get("SHOOTSetPoint"));
 			//only from armed if shoot button pressed otherwise, carry
-			//roller off/mid
+			//roller off/mid...rotary encoder...break beam sensor
 			//intake user
 			//shooter launch
 			//reset to carry position(b)->carry
@@ -71,6 +71,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//roller goes down to mid to down
 			//roller inverts the roller motor
+			//Intake->SetInverted(constants->Get("RollerOuttake")==1); //edit to create accurate
 			//shooter into intake position
 			if (ReleaseButton == 0 && shooter->AtSetpoint()){
 
