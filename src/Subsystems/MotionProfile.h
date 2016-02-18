@@ -19,6 +19,9 @@ private:
 	double t2;
 	double t1;
 	double V0;
+	double a;
+	double b;
+	double c;
 };
 
 #endif /* SRC_SUBSYSTEMS_MOTIONPROFILE_H_ */
