@@ -37,13 +37,18 @@ shooterStateCARRY	-1
 shooterStateARMED	-1
 shooterStateSHOOT	-1
 shooterStateINTAKE	-1
-shooterButton		13
+shooterButton		7
 
 shooterEncoderA		-1
 shooterEncoderB		-1
 
-shooterMotor1		8
-shooterMotor2		9
+shooterMotor1		6
+shooterMotor2		7
+shooterMotor1Invert	0
+shooterMotor2Invert	0
+
+shooterLengthSec	0.25
+shooterPower		1
 
 shooterDigitalIndex	27
 
