@@ -8,6 +8,7 @@
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
 #include <Solenoid.h>
+#include <Timer.h>
 #include "AHRS.h"
 
 class Robot: public IterativeRobot
@@ -18,8 +19,17 @@ private:
 	Joystick *Drivestick;
 	Joystick *Operatorstick;
 	Constants *constants;
-	VictorSP *shooter;
+
+
+	VictorSP *shooterMotor1;
+	VictorSP *shooterMotor2;
 	SixWheelDrive *Drive;
+
+	// Variables for Ian's implementation of dumb shooter.
+	Timer *timer;
+	bool lastShooterButton;
+	bool shoot;
+
 	SendableChooser *chooser;
 	Solenoid *solenoid;
 	const std::string autoNameDefault = "Default";
@@ -29,15 +39,26 @@ private:
 
 	void RobotInit()
 	{
+		// Ian's dumb shooter init
+		lastShooterButton = false;
+		shoot = false;
+		timer = new Timer();
+		timer->Reset();
 
 		constants = new Constants();
 		Drivestick = new Joystick(0);
 		Operatorstick = new Joystick(0);
 		lw = LiveWindow::GetInstance();
-		shooter  = new VictorSP(7);
 		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);
+
+		shooterMotor1 = new VictorSP(constants->Get("shooterMotor1"));
+		shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
+
+		shooterMotor1->SetInverted(constants->Get("shooterMotor1Invert") == 1);
+		shooterMotor2->SetInverted(constants->Get("shooterMoto21Invert") == 1);
+
 		chooser = new SendableChooser();
 		chooser->AddDefault(autoNameDefault, (void*)&autoNameDefault);
 		chooser->AddObject(autoNameCustom, (void*)&autoNameCustom);
@@ -91,14 +112,25 @@ private:
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 		//midRight->Set(rightFront->Get());
 
-		//right trigger 7
-		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))==true){
-			//when button is pressed, motor moves. -Sep
-			shooter -> Set(1);
-		} else {
-			//Stops the motor when button not pressed -Sep
-			shooter->Set(0);
+		//Ian's dumb implementation for shooter
+		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
+			if (!lastShooterButton) {
+				timer->Reset();
+				timer->Start();
+				shoot = true;
+			}
 		}
+		if (timer->Get() < constants->Get("shooterLengthSec") && shoot) {
+			shooterMotor1->Set(constants->Get("shooterPower"));
+			shooterMotor1->Set(constants->Get("shooterPower"));
+		} else {
+			shooterMotor1->Set(0);
+			shooterMotor1->Set(0);
+			shoot = false;
+		}
+
+		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
+		// end Ian's dumb implementation
 
 		if (Operatorstick->GetRawButton(6)){
 			//have fun :)
