@@ -12,6 +12,10 @@ Shooter::Shooter(Constants *ILoveLucy) :
 	shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
 	shooterMotor1 = new VictorSP(constants->Get("shooterMotor1"));
 	shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
+
+	shooterMotor1->SetInverted(constants->Get("shooterMotor1Invert") == 1);
+	shooterMotor2->SetInverted(constants->Get("shooterMoto21Invert") == 1);
+
 	GetPIDController()->SetPID(constants->Get("shooterPGain"), constants->Get("shooterIGain"), constants->Get("shooterDGain"));
 	shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
 	// Use these to get going:
