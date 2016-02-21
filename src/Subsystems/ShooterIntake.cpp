@@ -26,7 +26,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
-			Roller
+
 			//default state in which the other states may be accessed from (done)
 			//shooter in middle position(b) (done/setpoint)
 			//roller up/off
@@ -84,8 +84,21 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			state = CARRY;
 			break;
 	}
-
-
 }
+
+	void RollerInvert(float rollerAxis, bool OuttakeButton, bool IntakeButton){
+		if (rollerAxis){
+					Roller->;
+		}
+		if (Operatorstick->IntakeButton(8)){
+			Roller->SetInverted(constants->Get("RollerInvertF")== 1);
+		}
+		else (Operatorstick->OuttakeButton(6)){
+			Roller->SetInverted(constants->Get("RollerInvertB")== 1);
+		}
+	}
+
+
+
 
 

@@ -32,6 +32,7 @@ public:
 	ShooterIntake(Constants *RickyRicardo);
 	void InitDefaultCommand();
 	void Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton);
+	void RollerInvert(bool OuttakeButton, bool IntakeButton);
 };
 
 #endif

@@ -79,14 +79,39 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear, bool isLowGea
 
 }
 void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
+	// Ian's Cheezy drive algorithm
+	// algorithm sets a constant difference between left and right drive
+	// for all y settings difference is set by x axis.
 
-	Drive->ArcadeDrive(Y, X, false);
+	// Left and right speed are set for driving with the
+	// + and - X and Y sets. This works in all cases until you get
+	// a number input from joystick such as (.5,1) this would set the
+	// leftSpeed = 1.5 rightSpeed = .5, We want constant different which should
+	// be left = 1 right = 0 so we use the if's to catch this issue and
+	// subtract the extra .5 from the left speed from the right speed
+	double leftSpeed = Y + X;
+	double rightSpeed = Y - X;
+
+	if (leftSpeed > 1)	{
+		rightSpeed = rightSpeed - (leftSpeed - 1);
+		leftSpeed = 1;
+	} else if (leftSpeed < -1)	{
+		rightSpeed = rightSpeed - (leftSpeed + 1);
+		leftSpeed = -1;
+	} else if (rightSpeed > 1) {
+		leftSpeed = leftSpeed - (rightSpeed - 1);
+	} else if (rightSpeed < -1) {
+		leftSpeed = leftSpeed - (rightSpeed + 1);
+	}
+
+	Drive->TankDrive(leftSpeed, rightSpeed, false);
+	// End Ian's Cheezy algorithm
+
 	rightMid->Set(rightFront->Get());
 	leftMid->Set(leftFront->Get());
 
 	ShifterTest=isHighGear;
 
 	shifter->Set(ShifterTest);
-	ahrs->GetAngle();
 }
 

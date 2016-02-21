@@ -7,7 +7,6 @@
 
 #include <Subsystems/MotionProfile.h>
 #include <iostream>
-#include <Accelerometer.h>
 #include <Timer.h>
 #include <Joystick.h>
 
@@ -15,9 +14,6 @@
 MotionProfile::MotionProfile(double AMax, double VMax) {
 	// TODO Auto-generated constructor stub
 
-
-	AMax = ;
-	VMax = ;
 
 	Amax = AMax;
 	Vmax = VMax;

@@ -78,8 +78,6 @@ private:
 		Timer Time;
 
 
-		/*Drive->SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
-		Drive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);*/
 	}
 
 
@@ -147,16 +145,13 @@ private:
 		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
 		// end Ian's dumb implementation
 
+		//Operatorstick->GetAxis(Joystick::AxisType)constants->Get("RollerMotorY"), GetAxis(Joystick::AxisType)constants->Get("RollerMotorX");
 		if (Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisY")) || Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX"))){
 			Time->Timer::Start();
 			CurrentTime=Time->Timer::Get();
 		}
 
 
-		if (Operatorstick->GetRawButton(6)){
-			//have fun :)
-			//
-		}
 	}
 
 	void TestPeriodic()

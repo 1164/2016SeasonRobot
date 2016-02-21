@@ -7,7 +7,6 @@
 
 #ifndef SRC_SUBSYSTEMS_MOTIONPROFILE_H_
 #define SRC_SUBSYSTEMS_MOTIONPROFILE_H_
-#include <Accelerometer.h>
 #include <Timer.h>
 
 class MotionProfile {

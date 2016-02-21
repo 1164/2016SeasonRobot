@@ -71,11 +71,15 @@ RollerArmControl	21
 
 RollerEncPoint		33
 
-RollerControlP		1
-RollerControlI		1
-RollerControlD		1
-RollerControlF		0
-RollerControlIzone	0
+RollerArmControlP	1
+RollerArmControlI	1
+RollerArmControlD	1
+RollerArmControlF	0
+RollerArmControlIzone	0
 RCloseLoopRampRate	0
 
 RollerMotor			-1
+RollerMotorY		-1
+RollerMotorX		-1
+RollerInvertB		1
+RollerInvertF		0
