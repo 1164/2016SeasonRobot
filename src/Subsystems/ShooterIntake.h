@@ -7,6 +7,7 @@
 #include "RollerArm.h"
 #include <Constants.h>
 #include <Encoder.h>
+#include <VictorSP.h>
 
 #define CARRY	0
 #define SHOOT 	2
@@ -23,6 +24,8 @@ private:
 	Encoder *rollerEncodeIn;
 	Encoder *rollerArm;
 	RollerArm *Rollerarm;
+	VictorSP *Roller;
+
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:

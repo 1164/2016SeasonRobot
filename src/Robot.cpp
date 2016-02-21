@@ -14,6 +14,11 @@
 class Robot: public IterativeRobot
 {
 
+public:
+	//Timer for motion profiler
+	Timer *Time;
+	double CurrentTime=0;
+
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
 	Joystick *Drivestick;
@@ -29,6 +34,9 @@ private:
 	Timer *timer;
 	bool lastShooterButton;
 	bool shoot;
+	//Timer for motion profiler
+	Timer *Time;
+	double CurrentTime=0;
 
 	SendableChooser *chooser;
 	Solenoid *solenoid;
@@ -57,12 +65,19 @@ private:
 		shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
 
 		shooterMotor1->SetInverted(constants->Get("shooterMotor1Invert") == 1);
-		shooterMotor2->SetInverted(constants->Get("shooterMoto21Invert") == 1);
+		shooterMotor2->SetInverted(constants->Get("shooterMotor2Invert") == 1);
 
 		chooser = new SendableChooser();
 		chooser->AddDefault(autoNameDefault, (void*)&autoNameDefault);
 		chooser->AddObject(autoNameCustom, (void*)&autoNameCustom);
 		SmartDashboard::PutData("Auto Modes", chooser);
+
+		//Timer for the motion profiler
+		double CurrentTime=0;
+		//double Time;
+		Timer Time;
+
+
 		/*Drive->SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
 		Drive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);*/
 	}
@@ -122,15 +137,21 @@ private:
 		}
 		if (timer->Get() < constants->Get("shooterLengthSec") && shoot) {
 			shooterMotor1->Set(constants->Get("shooterPower"));
-			shooterMotor1->Set(constants->Get("shooterPower"));
+			shooterMotor2->Set(constants->Get("shooterPower"));
 		} else {
 			shooterMotor1->Set(0);
-			shooterMotor1->Set(0);
+			shooterMotor2->Set(0);
 			shoot = false;
 		}
 
 		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
 		// end Ian's dumb implementation
+
+		if (Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisY")) || Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX"))){
+			Time->Timer::Start();
+			CurrentTime=Time->Timer::Get();
+		}
+
 
 		if (Operatorstick->GetRawButton(6)){
 			//have fun :)

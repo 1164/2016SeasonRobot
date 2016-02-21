@@ -4,12 +4,13 @@ rightMidDrive 		5
 leftMidDrive 		2
 backRightDrive 		4
 backLeftDrive 		1
-LeftEncoderA		0
-LeftEncoderB		11
-RightEncoderA		22
-RightEncoderB		21
 
-ShifterSolenoid		12
+LeftEncoderA		0
+LeftEncoderB		1
+RightEncoderA		2
+RightEncoderB		3
+
+ShifterSolenoid		4
 
 DriveAxisX			0
 DriveAxisY			1
@@ -37,7 +38,7 @@ shooterStateCARRY	-1
 shooterStateARMED	-1
 shooterStateSHOOT	-1
 shooterStateINTAKE	-1
-shooterButton		7
+shooterButton		8
 
 shooterEncoderA		-1
 shooterEncoderB		-1
@@ -47,7 +48,7 @@ shooterMotor2		7
 shooterMotor1Invert	0
 shooterMotor2Invert	0
 
-shooterLengthSec	0.25
+shooterLengthSec	0.1
 shooterPower		1
 
 shooterDigitalIndex	27
@@ -76,3 +77,5 @@ RollerControlD		1
 RollerControlF		0
 RollerControlIzone	0
 RCloseLoopRampRate	0
+
+RollerMotor			-1

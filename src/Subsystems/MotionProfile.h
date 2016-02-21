@@ -7,6 +7,8 @@
 
 #ifndef SRC_SUBSYSTEMS_MOTIONPROFILE_H_
 #define SRC_SUBSYSTEMS_MOTIONPROFILE_H_
+#include <Accelerometer.h>
+#include <Timer.h>
 
 class MotionProfile {
 public:
@@ -22,6 +24,7 @@ private:
 	double a;
 	double b;
 	double c;
+	double Xa(double t);
 };
 
 #endif /* SRC_SUBSYSTEMS_MOTIONPROFILE_H_ */

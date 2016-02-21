@@ -8,6 +8,7 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 		shooter = new Shooter(constants);
 		Rollerarm = new RollerArm(constants);
 		state = CARRY;
+		Roller = new VictorSP(constants->Get("RollerMotor"));
 		rollerEncodeIn = new Encoder(constants->Get("RollerEncoderInA"), constants->Get("RollerEncoderInB"));
 		rollerArm = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 }
@@ -25,6 +26,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
+			Roller
 			//default state in which the other states may be accessed from (done)
 			//shooter in middle position(b) (done/setpoint)
 			//roller up/off

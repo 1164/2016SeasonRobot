@@ -14,7 +14,7 @@ Shooter::Shooter(Constants *ILoveLucy) :
 	shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
 
 	shooterMotor1->SetInverted(constants->Get("shooterMotor1Invert") == 1);
-	shooterMotor2->SetInverted(constants->Get("shooterMoto21Invert") == 1);
+	shooterMotor2->SetInverted(constants->Get("shooterMotor2Invert") == 1);
 
 	GetPIDController()->SetPID(constants->Get("shooterPGain"), constants->Get("shooterIGain"), constants->Get("shooterDGain"));
 	shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));

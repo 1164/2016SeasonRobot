@@ -7,10 +7,18 @@
 
 #include <Subsystems/MotionProfile.h>
 #include <iostream>
+#include <Accelerometer.h>
+#include <Timer.h>
+#include <Joystick.h>
 
 
 MotionProfile::MotionProfile(double AMax, double VMax) {
 	// TODO Auto-generated constructor stub
+
+
+	AMax = ;
+	VMax = ;
+
 	Amax = AMax;
 	Vmax = VMax;
 	t1 = 0;
@@ -26,7 +34,15 @@ MotionProfile::MotionProfile(double AMax, double VMax) {
 
 	a = Amax/2;
 
-	/*GetX(double t);
+
+}
+	double MotionProfile::Xa(double t){
+
+		return t;
+
+	}
+
+	GetX(t);
 	if (t<= t1){
 		Xa(t);
 	}
@@ -43,5 +59,6 @@ MotionProfile::MotionProfile(double AMax, double VMax) {
 		distance;
 	}
 
-*/
+
+
 }
