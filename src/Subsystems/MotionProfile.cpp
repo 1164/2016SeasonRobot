@@ -37,7 +37,7 @@ MotionProfile::MotionProfile(double AMax, double VMax) {
 		return t;
 
 	}
-
+/*
 	GetX(t);
 	if (t<= t1){
 		Xa(t);
@@ -54,7 +54,4 @@ MotionProfile::MotionProfile(double AMax, double VMax) {
 	if (t>t3){
 		distance;
 	}
-
-
-
-}
+*/

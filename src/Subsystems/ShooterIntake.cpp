@@ -86,18 +86,6 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 	}
 }
 
-	void RollerInvert(float rollerAxis, bool OuttakeButton, bool IntakeButton){
-		if (rollerAxis){
-					Roller->;
-		}
-		if (Operatorstick->IntakeButton(8)){
-			Roller->SetInverted(constants->Get("RollerInvertF")== 1);
-		}
-		else (Operatorstick->OuttakeButton(6)){
-			Roller->SetInverted(constants->Get("RollerInvertB")== 1);
-		}
-	}
-
 
 
 

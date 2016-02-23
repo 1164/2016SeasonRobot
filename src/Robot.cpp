@@ -7,6 +7,7 @@
 #include <Speedcontroller.h>
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
+#include "ShooterIntake.h"
 #include <Solenoid.h>
 #include <Timer.h>
 #include "AHRS.h"
@@ -55,7 +56,7 @@ private:
 
 		constants = new Constants();
 		Drivestick = new Joystick(0);
-		Operatorstick = new Joystick(0);
+		Operatorstick = new Joystick(1);
 		lw = LiveWindow::GetInstance();
 		solenoid = new Solenoid(5);
 
@@ -145,11 +146,17 @@ private:
 		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
 		// end Ian's dumb implementation
 
-		//Operatorstick->GetAxis(Joystick::AxisType)constants->Get("RollerMotorY"), GetAxis(Joystick::AxisType)constants->Get("RollerMotorX");
+		if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) > 0){
+			ShooterIntake::Roller->SetInverted(0);
+		}
+		else if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) < 0){
+			ShooterIntake::Roller->SetInverted(1);
+		}
 		if (Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisY")) || Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX"))){
 			Time->Timer::Start();
 			CurrentTime=Time->Timer::Get();
 		}
+
 
 
 	}
