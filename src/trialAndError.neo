@@ -51,7 +51,7 @@ shooterMotor2Invert	0
 shooterLengthSec	0.1
 shooterPower		1
 
-shooterDigitalIndex	4
+shooterDigitalIndex	27
 
 CARRYSetPoint		2.0
 INTAKESetPoint		3.0
@@ -67,7 +67,7 @@ RollerEncoderArmA	19
 RollerEncoderArmB	27
 RollerEncoderInA	20
 RollerEncoderInB	28
-RollerArmControl	0
+RollerArmControl	21
 
 RollerEncPoint		33
 
@@ -78,7 +78,7 @@ RollerArmControlF	0
 RollerArmControlIzone	0
 RCloseLoopRampRate	0
 
-RollerMotor			8
+RollerMotor			-1
 RollerMotorY		-1
 RollerMotorX		-1
 RollerInvertB		1

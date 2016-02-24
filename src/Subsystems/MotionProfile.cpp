@@ -25,7 +25,10 @@ MotionProfile::MotionProfile(double AMax, double VMax) {
 	b = 0;
 	c = 0;
 
-	t1 = Vmax/Amax;
+	t3 = Amax/Vmax;
+	t1 = (Vmax-V0)/Amax;
+
+	a = Amax/2;
 
 
 }
