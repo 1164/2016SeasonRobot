@@ -14,7 +14,6 @@
 #define INTAKE 	1
 #define ARMED	3
 #define RELEASE	4
-#include "robot.cpp"
 
 class ShooterIntake: public Subsystem
 {

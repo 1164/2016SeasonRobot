@@ -12,16 +12,16 @@ RightEncoderB		3
 
 ShifterSolenoid		4
 
-DriveAxisX			0
+DriveAxisX			2
 DriveAxisY			1
 
 HighShiftButton		5
 LowShiftButton		7
 
 HighGearYGain		1
-HighGearXGain		1
+HighGearXGain		-1
 LowGearYGain		1
-LowGearXGain		1
+LowGearXGain		-1
 
 leftBackInvert		0
 leftMidInvert		0

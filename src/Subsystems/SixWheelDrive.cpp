@@ -74,7 +74,12 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear, bool isLowGea
 		X=X*constants->Get("LowGearXGain");
 		Y=Y*constants->Get("LowGearYGain");
 	}
-
+	if (X<.05 && X>-.05){
+		X=0;
+	}
+	if (Y<.05 && Y>-.05){
+			Y=0;
+	}
 	arcadeDrive(Y,X,ShifterTest);
 
 }

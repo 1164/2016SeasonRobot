@@ -7,7 +7,7 @@
 #include <Speedcontroller.h>
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
-#include "ShooterIntake.h"
+#include "Subsystems/ShooterIntake.h"
 #include <Solenoid.h>
 #include <Timer.h>
 #include "AHRS.h"
@@ -17,8 +17,8 @@ class Robot: public IterativeRobot
 
 public:
 	//Timer for motion profiler
-	Timer *Time;
-	double CurrentTime=0;
+	//Timer *Time;
+	//double CurrentTime=0;
 
 private:
 	LiveWindow *lw = LiveWindow::GetInstance();
@@ -36,8 +36,8 @@ private:
 	bool lastShooterButton;
 	bool shoot;
 	//Timer for motion profiler
-	Timer *Time;
-	double CurrentTime=0;
+	//Timer *Time;
+	//double CurrentTime=0;
 
 	SendableChooser *chooser;
 	Solenoid *solenoid;
@@ -74,9 +74,9 @@ private:
 		SmartDashboard::PutData("Auto Modes", chooser);
 
 		//Timer for the motion profiler
-		double CurrentTime=0;
+		//double CurrentTime=0;
 		//double Time;
-		Timer Time;
+		//Timer Time;
 
 
 	}
@@ -146,7 +146,7 @@ private:
 		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
 		// end Ian's dumb implementation
 
-		if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) > 0){
+		/*if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) > 0){
 			ShooterIntake::Roller->SetInverted(0);
 		}
 		else if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) < 0){
@@ -156,7 +156,7 @@ private:
 			Time->Timer::Start();
 			CurrentTime=Time->Timer::Get();
 		}
-
+*/
 
 
 	}
