@@ -14,10 +14,10 @@
   <!-- <property name="version" value=""/> -->
 
   <!-- By default the system team number is used -->
-  <property name="team-number" value="1164"/>
+  <property name="team-number" value="2015"/>
 
   <!-- By default the target is set to 10.TE.AM.2 -->
-  <property name="target" value="roboRIO-1164-FRC.local"/>
+  <property name="target" value="roboRIO-2015-FRC.local"/>
   
   <property file="${user.home}/wpilib/wpilib.properties"/>
   <property file="build.properties"/>

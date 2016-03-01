@@ -158,6 +158,9 @@ private:
 		}
 
 
+		//Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
+		Operatorstick::SetAxisChannel
+
 
 	}
 

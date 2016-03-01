@@ -17,12 +17,12 @@ class SixWheelDrive: public Subsystem
 {
 private:
 	RobotDrive *Drive;
-	VictorSP *leftBack;
-	VictorSP *rightBack;
-	VictorSP *rightFront;
-	VictorSP *leftFront;
-	VictorSP *rightMid;
-	VictorSP *leftMid;
+	Talon *leftBack; //VictorSP
+	Talon *rightBack;//VictorSP
+	Talon *rightFront;//VictorSP
+	Talon *leftFront;//VictorSP
+	Talon *rightMid;//VictorSP
+	Talon *leftMid;//VictorSP
 	Solenoid *shifter;
 	Encoder *RightWheelEncoder;
 	Encoder *LeftWheelEncoder;
