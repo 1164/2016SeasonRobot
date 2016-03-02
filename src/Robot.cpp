@@ -126,7 +126,7 @@ private:
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 		//midRight->Set(rightFront->Get());
 
-		//Ian's dumb implementation for shooter
+		//Ian's implementation for shooter
 		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
 			if (!lastShooterButton) {
 				timer->Reset();
@@ -144,7 +144,7 @@ private:
 		}
 
 		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
-		// end Ian's dumb implementation
+		// end Ian's implementation
 
 		/*if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) > 0){
 			ShooterIntake::Roller->SetInverted(0);
@@ -159,7 +159,7 @@ private:
 */
 
 		//Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
-		Operatorstick::SetAxisChannel
+		//Operatorstick::SetAxisChannel
 
 
 	}

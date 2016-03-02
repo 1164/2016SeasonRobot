@@ -52,6 +52,7 @@ shooterLengthSec	0.1
 shooterPower		1
 
 shooterDigitalIndex	4
+shootedDigitalIndex	-1
 
 CARRYSetPoint		2.0
 INTAKESetPoint		3.0

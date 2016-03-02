@@ -2,6 +2,7 @@
 //#include "../RobotMap.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
+#include <Timer.h>
 
 
 
@@ -18,6 +19,8 @@ Shooter::Shooter(Constants *ILoveLucy) :
 
 	GetPIDController()->SetPID(constants->Get("shooterPGain"), constants->Get("shooterIGain"), constants->Get("shooterDGain"));
 	shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
+	shootedIndex = new DigitalInput(constants->Get("shootedDigitalIndex"));
+	motorTimer = new Timer;
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
 	//                  to
@@ -32,6 +35,9 @@ double Shooter::ReturnPIDInput()
 {
 	if (shooterIndex->Get()){
 		shooterEncoder->Reset();
+	}
+	if (shootedIndex->Get()){
+		shooterMotor1->Set(-127) && shooterMotor2->Set(-127);
 	}
 	return shooterEncoder->Get();
 	// Return your input value for the PID loop
