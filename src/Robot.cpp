@@ -7,7 +7,7 @@
 #include <Speedcontroller.h>
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
-#include "ShooterIntake.h"
+#include "Subsystems/ShooterIntake.h"
 #include <Solenoid.h>
 #include <Timer.h>
 #include "AHRS.h"
