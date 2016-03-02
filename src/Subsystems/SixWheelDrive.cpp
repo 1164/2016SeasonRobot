@@ -80,8 +80,9 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear, bool isLowGea
 	if (Y<.05 && Y>-.05){
 			Y=0;
 	}
-	arcadeDrive(Y,X,ShifterTest);
 
+
+	arcadeDrive(Y,X,ShifterTest);
 }
 void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
 	// Ian's Cheezy drive algorithm
