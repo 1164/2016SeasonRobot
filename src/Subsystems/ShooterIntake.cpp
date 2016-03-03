@@ -45,6 +45,10 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//shooter position fully down (a)... break beam sensor
 			//roller mid to down...rotary encoder...break beam sensor
 			//roller suck...rotary encoder...motor:VictorSP
+			if(!IntakeButton){
+				state = CARRY;
+				//IF intake button released, revert to carry.
+			}
 			break;
 		case ARMED:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("ARMEDSetPoint"));
@@ -56,6 +60,10 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			if (ShootButton && shooter->AtSetpoint()){
 				state = SHOOT;
 			}
+			if(!ArmedButton){
+				state = CARRY;
+				// if armed button isn't held down, it will revert to carry
+			}
 			break;
 		case SHOOT:
 			Rollerarm->Update(constants->Get("rollerEncPoint"));
@@ -65,7 +73,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//intake user
 			//shooter launch
 			//reset to carry position(b)->carry
-			if (ShootButton == 0 && shooter->AtSetpoint()){
+			if (!ShootButton && shooter->AtSetpoint()){
 				state = CARRY;
 				}
 			break;
@@ -75,7 +83,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//roller inverts the roller motor
 			//Intake->SetInverted(constants->Get("RollerOuttake")==1); //edit to create accurate
 			//shooter into intake position
-			if (ReleaseButton == 0 && shooter->AtSetpoint()){
+			if (!ReleaseButton && shooter->AtSetpoint()){
 
 			}
 
