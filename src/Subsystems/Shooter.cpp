@@ -37,7 +37,8 @@ double Shooter::ReturnPIDInput()
 		shooterEncoder->Reset();
 	}
 	if (shootedIndex->Get()){
-		shooterMotor1->Set(-127) && shooterMotor2->Set(-127);
+		shooterMotor1->Set(-127);
+		shooterMotor2->Set(-127);
 	}
 	return shooterEncoder->Get();
 	// Return your input value for the PID loop
