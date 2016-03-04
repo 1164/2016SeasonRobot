@@ -7,7 +7,7 @@
 #include <Joystick.h>
 #include <Solenoid.h>
 #include <Encoder.h>
-#include <Constants.h>
+#include "../Constants.h"
 #include <VictorSP.h>
 const double EncoderReset = 0;
 //#include <Talon.h>

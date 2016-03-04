@@ -40,8 +40,8 @@ shooterStateSHOOT	-1
 shooterStateINTAKE	-1
 shooterButton		8
 
-shooterEncoderA		-1
-shooterEncoderB		-1
+shooterEncoderA		5
+shooterEncoderB		6
 
 shooterMotor1		6
 shooterMotor2		7
@@ -64,8 +64,8 @@ RollerIntake		15
 RollerOuttake		16
 RollerUp			17
 RollerDown			18
-RollerEncoderArmA	19
-RollerEncoderArmB	27
+RollerEncoderArmA	7
+RollerEncoderArmB	8
 RollerEncoderInA	20
 RollerEncoderInB	28
 RollerArmControl	0
@@ -76,12 +76,11 @@ RollerEncPoint		33
 RollerArmControlP	1
 RollerArmControlI	1
 RollerArmControlD	1
-RollerArmControlF	0
 RollerArmControlIzone	0
 RCloseLoopRampRate	0
 
 RollerMotor			8
-RollerMotorY		-1
+RollerMotorY		3
 RollerMotorX		-1
 RollerInvertB		1
 RollerInvertF		0

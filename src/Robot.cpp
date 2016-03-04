@@ -26,10 +26,11 @@ private:
 	Joystick *Operatorstick;
 	Constants *constants;
 
-
+	VictorSP *RollerMotor;
 	VictorSP *shooterMotor1;
 	VictorSP *shooterMotor2;
 	SixWheelDrive *Drive;
+	ShooterIntake *ShootIntake;
 
 	// Variables for Ian's implementation of dumb shooter.
 	Timer *timer;
@@ -61,6 +62,9 @@ private:
 		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);
+		ShootIntake = new ShooterIntake (constants);
+
+		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 
 		shooterMotor1 = new VictorSP(constants->Get("shooterMotor1"));
 		shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
@@ -126,40 +130,10 @@ private:
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 		//midRight->Set(rightFront->Get());
 
-		//Ian's implementation for shooter
-		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
-			if (!lastShooterButton) {
-				timer->Reset();
-				timer->Start();
-				shoot = true;
-			}
-		}
-		if (timer->Get() < constants->Get("shooterLengthSec") && shoot) {
-			shooterMotor1->Set(constants->Get("shooterPower"));
-			shooterMotor2->Set(constants->Get("shooterPower"));
-		} else {
-			shooterMotor1->Set(0);
-			shooterMotor2->Set(0);
-			shoot = false;
-		}
+		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")), 0);
 
-		lastShooterButton = Operatorstick->GetRawButton(constants->Get("shooterButton"));
-		// end Ian's implementation
+	//	Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
 
-		/*if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) > 0){
-			ShooterIntake::Roller->SetInverted(0);
-		}
-		else if (Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) < 0){
-			ShooterIntake::Roller->SetInverted(1);
-		}
-		if (Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisY")) || Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX"))){
-			Time->Timer::Start();
-			CurrentTime=Time->Timer::Get();
-		}
-*/
-
-		//Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
-		//Operatorstick::SetAxisChannel
 
 
 	}

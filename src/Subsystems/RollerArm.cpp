@@ -7,7 +7,7 @@ RollerArm::RollerArm(Constants *Ethel) :
 	constants = Ethel;
 	RollerControl = new CANTalon(constants->Get("RollerArmControl"));
 
-	RollerControl->SetPID(constants->Get("RollerArmControlP"), constants->Get("RollerArmControlI"), constants->Get("RollerArmControlD"), constants->Get("RollerArmControlF"));
+	RollerControl->SetPID(constants->Get("RollerArmControlP"), constants->Get("RollerArmControlI"), constants->Get("RollerArmControlD"));
 	RollerControl->SetCloseLoopRampRate(constants->Get("RCloseLoopRampRate"));
 	RollerControl->SetIzone(constants->Get("RollerArmControlIzone"));
 

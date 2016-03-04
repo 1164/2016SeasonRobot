@@ -36,10 +36,6 @@ double Shooter::ReturnPIDInput()
 	if (shooterIndex->Get()){
 		shooterEncoder->Reset();
 	}
-	if (shootedIndex->Get()){
-		shooterMotor1->Set(-127);
-		shooterMotor2->Set(-127);
-	}
 	return shooterEncoder->Get();
 	// Return your input value for the PID loop
 	// e.g. a sensor, like a potentiometer:
