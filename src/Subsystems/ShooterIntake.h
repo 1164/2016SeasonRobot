@@ -21,7 +21,6 @@ private:
 	int state;
 	Constants *constants;
 	Shooter *shooter;
-	Encoder *rollerEncodeIn;
 	Encoder *rollerArm;
 	RollerArm *Rollerarm;
 	VictorSP *Roller;

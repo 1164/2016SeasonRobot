@@ -11,6 +11,7 @@
 #include <Solenoid.h>
 #include <Timer.h>
 #include "AHRS.h"
+#include <Encoder.h>
 
 class Robot: public IterativeRobot
 {
@@ -46,9 +47,14 @@ private:
 	const std::string autoNameCustom = "My Auto";
 	std::string autoSelected;
 
+	Encoder* shooterEncod;
+
 
 	void RobotInit()
 	{
+		//sensors
+		shooterEncod = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+
 		// Ian's dumb shooter init
 		lastShooterButton = false;
 		shoot = false;
@@ -130,12 +136,17 @@ private:
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 		//midRight->Set(rightFront->Get());
 
-		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")), 0);
+		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * .5, 0);
 
 	//	Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
 
 
 
+	}
+
+	void DisabledPeriodic()
+	{
+		cout >> shooterEncod->GetRaw();
 	}
 
 	void TestPeriodic()

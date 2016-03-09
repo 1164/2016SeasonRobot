@@ -66,8 +66,6 @@ RollerUp			17
 RollerDown			18
 RollerEncoderArmA	7
 RollerEncoderArmB	8
-RollerEncoderInA	20
-RollerEncoderInB	28
 RollerArmControl	0
 RollerAControl		1
 
