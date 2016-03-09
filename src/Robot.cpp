@@ -31,7 +31,7 @@ private:
 	VictorSP *shooterMotor1;
 	VictorSP *shooterMotor2;
 	SixWheelDrive *Drive;
-	ShooterIntake *ShootIntake;
+	//ShooterIntake *ShootIntake;
 
 	// Variables for Ian's implementation of dumb shooter.
 	Timer *timer;
@@ -47,13 +47,13 @@ private:
 	const std::string autoNameCustom = "My Auto";
 	std::string autoSelected;
 
-	Encoder* shooterEncod;
+	Encoder* shooterEncoder;
 
 
 	void RobotInit()
 	{
 		//sensors
-		shooterEncod = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
 
 		// Ian's dumb shooter init
 		lastShooterButton = false;
@@ -68,7 +68,7 @@ private:
 		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);
-		ShootIntake = new ShooterIntake (constants);
+		//ShootIntake = new ShooterIntake (constants);
 
 		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 
@@ -146,7 +146,7 @@ private:
 
 	void DisabledPeriodic()
 	{
-		cout << shooterEncod->GetRaw();
+		cout << shooterEncoder->GetRaw();
 	}
 
 	void TestPeriodic()

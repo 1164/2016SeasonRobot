@@ -10,7 +10,7 @@ Shooter::Shooter(Constants *ILoveLucy) :
 		PIDSubsystem("Shooter", 1.0, 0.0, 0.0)
 {
 	constants = ILoveLucy;
-	shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+	//shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
 	shooterMotor1 = new VictorSP(constants->Get("shooterMotor1"));
 	shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
 
@@ -18,8 +18,8 @@ Shooter::Shooter(Constants *ILoveLucy) :
 	shooterMotor2->SetInverted(constants->Get("shooterMotor2Invert") == 1);
 
 	GetPIDController()->SetPID(constants->Get("shooterPGain"), constants->Get("shooterIGain"), constants->Get("shooterDGain"));
-	shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
-	shootedIndex = new DigitalInput(constants->Get("shootedDigitalIndex"));
+	//shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
+	//shootedIndex = new DigitalInput(constants->Get("shootedDigitalIndex"));
 	motorTimer = new Timer;
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
@@ -33,10 +33,11 @@ bool Shooter::AtSetpoint(){
 
 double Shooter::ReturnPIDInput()
 {
-	if (shooterIndex->Get()){
+	/*if (shooterIndex->Get()){
 		shooterEncoder->Reset();
 	}
 	return shooterEncoder->Get();
+	*/
 	// Return your input value for the PID loop
 	// e.g. a sensor, like a potentiometer:
 	// yourPot->SetAverageVoltage() / kYourMaxVoltage;

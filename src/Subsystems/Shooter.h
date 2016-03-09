@@ -13,11 +13,11 @@ class Shooter: public PIDSubsystem
 {
 private:
 	Constants *constants;
-	Encoder *shooterEncoder;
+	//Encoder *shooterEncoder;
 	VictorSP *shooterMotor1;
 	VictorSP *shooterMotor2;
-	DigitalInput *shooterIndex;
-	DigitalInput *shootedIndex;
+	//DigitalInput *shooterIndex;
+	//DigitalInput *shootedIndex;
 	Timer *motorTimer;
 
 public:
