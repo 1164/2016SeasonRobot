@@ -146,7 +146,7 @@ private:
 
 	void DisabledPeriodic()
 	{
-		cout >> shooterEncod->GetRaw();
+		cout << shooterEncod->GetRaw();
 	}
 
 	void TestPeriodic()
