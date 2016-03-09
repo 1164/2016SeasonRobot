@@ -8,7 +8,6 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 		shooter = new Shooter(constants);
 		Rollerarm = new RollerArm(constants);
 		state = CARRY;
-		Roller = new VictorSP(constants->Get("RollerMotor"));
 		rollerEncodeIn = new Encoder(constants->Get("RollerEncoderInA"), constants->Get("RollerEncoderInB"));
 		rollerArm = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 }
