@@ -16,8 +16,7 @@ private:
 	//Encoder *shooterEncoder;
 	VictorSP *shooterMotor1;
 	VictorSP *shooterMotor2;
-	//DigitalInput *shooterIndex;
-	//DigitalInput *shootedIndex;
+	DigitalInput *shooterIndex;
 	Timer *motorTimer;
 
 public:

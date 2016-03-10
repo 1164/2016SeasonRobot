@@ -48,12 +48,13 @@ private:
 	std::string autoSelected;
 
 	Encoder* shooterEncoder;
+	DigitalInput *shooterIndex;
 
 
 	void RobotInit()
 	{
 		//sensors
-		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+
 
 		// Ian's dumb shooter init
 		lastShooterButton = false;
@@ -87,7 +88,8 @@ private:
 		//double CurrentTime=0;
 		//double Time;
 		//Timer Time;
-
+		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+		shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
 
 	}
 
@@ -146,7 +148,12 @@ private:
 
 	void DisabledPeriodic()
 	{
-		cout << shooterEncoder->GetRaw();
+		char *Breakbeamy = new char[255];
+		char *stringy = new char[255];
+		sprintf(stringy, "ShooterEnc: %d\n", shooterEncoder->Get());
+		DriverStation::GetInstance().ReportError(stringy);
+		sprintf(Breakbeamy, "ShooterIndex: %d\n", shooterIndex->Get());
+		DriverStation::GetInstance().ReportError(Breakbeamy);
 	}
 
 	void TestPeriodic()

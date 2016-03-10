@@ -19,7 +19,6 @@ Shooter::Shooter(Constants *ILoveLucy) :
 
 	GetPIDController()->SetPID(constants->Get("shooterPGain"), constants->Get("shooterIGain"), constants->Get("shooterDGain"));
 	//shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
-	//shootedIndex = new DigitalInput(constants->Get("shootedDigitalIndex"));
 	motorTimer = new Timer;
 	// Use these to get going:
 	// SetSetpoint() -  Sets where the PID controller should move the system
