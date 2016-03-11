@@ -8,7 +8,9 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 		shooter = new Shooter(constants);
 		Rollerarm = new RollerArm(constants);
 		state = CARRY;
-		rollerArm = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
+		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+		shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
+		RollerEncoder = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 }
 
 void ShooterIntake::InitDefaultCommand()

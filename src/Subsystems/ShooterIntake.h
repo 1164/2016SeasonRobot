@@ -8,6 +8,7 @@
 #include <Constants.h>
 #include <Encoder.h>
 #include <VictorSP.h>
+#include <DigitalInput.h>
 
 #define CARRY	0
 #define SHOOT 	2
@@ -21,9 +22,11 @@ private:
 	int state;
 	Constants *constants;
 	Shooter *shooter;
-	Encoder *rollerArm;
 	RollerArm *Rollerarm;
 	VictorSP *Roller;
+	Encoder *shooterEncoder;
+	DigitalInput *shooterIndex;
+	Encoder *RollerEncoder;
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities

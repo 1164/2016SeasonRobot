@@ -49,12 +49,13 @@ private:
 
 	Encoder* shooterEncoder;
 	DigitalInput *shooterIndex;
+	Encoder *RollerEncoder;
 
+	bool *ShooterReset;
 
 	void RobotInit()
 	{
-		//sensors
-
+		//Experimental Vars
 
 		// Ian's dumb shooter init
 		lastShooterButton = false;
@@ -90,6 +91,7 @@ private:
 		//Timer Time;
 		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
 		shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
+		RollerEncoder = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 
 	}
 
@@ -142,18 +144,39 @@ private:
 
 	//	Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
 
-
-
+		//ShooterMoving
+		if(Drivestick->GetRawButton(11)){
+			shooterMotor1->Set(.05);
+		} else if(Drivestick->GetRawButton(12)){
+			shooterMotor2->Set(.05);
+		}
 	}
 
 	void DisabledPeriodic()
 	{
+		char *Rollerencoder = new char[255];
 		char *Breakbeamy = new char[255];
 		char *stringy = new char[255];
+
 		sprintf(stringy, "ShooterEnc: %d\n", shooterEncoder->Get());
 		DriverStation::GetInstance().ReportError(stringy);
 		sprintf(Breakbeamy, "ShooterIndex: %d\n", shooterIndex->Get());
 		DriverStation::GetInstance().ReportError(Breakbeamy);
+		sprintf(Rollerencoder, "rollerEncoder: %d\n", RollerEncoder->Get());
+		DriverStation::GetInstance().ReportError(Rollerencoder);
+
+		//experimental code -sep
+		//to see if shooter is in reset position
+		/*
+
+		 if(shooterIndex->Get()){
+			if(ShooterReset){
+				ShooterReset = false;
+			} else {
+				ShooterReset = true;
+			}
+		}
+	*/
 	}
 
 	void TestPeriodic()
