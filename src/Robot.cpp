@@ -165,6 +165,10 @@ private:
 		sprintf(Rollerencoder, "rollerEncoder: %d\n", RollerEncoder->Get());
 		DriverStation::GetInstance().ReportError(Rollerencoder);
 
+		if(Drivestick->GetRawButton(11) || Drivestick->GetRawButton(12)){
+			DriverStation::GetInstance().ReportError("Button Press Registered");
+		}
+
 		//experimental code -sep
 		//to see if shooter is in reset position
 		/*

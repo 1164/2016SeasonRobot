@@ -46,8 +46,8 @@ void Shooter::UsePIDOutput(double output)
 {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	shooterMotor1->Set(output);
-	shooterMotor2->Set(output);
+	//shooterMotor1->Set(output);
+	//shooterMotor2->Set(output);
 }
 
 void Shooter::InitDefaultCommand()
