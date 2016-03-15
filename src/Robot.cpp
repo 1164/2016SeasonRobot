@@ -8,6 +8,7 @@
 #include <Constants.h>
 #include <Subsystems/SixWheelDrive.h>
 #include "Subsystems/ShooterIntake.h"
+#include "Subsystems/Shooter.h"
 #include <Solenoid.h>
 #include <Timer.h>
 #include "AHRS.h"
@@ -28,18 +29,11 @@ private:
 	Constants *constants;
 
 	VictorSP *RollerMotor;
-	VictorSP *shooterMotor1;
-	VictorSP *shooterMotor2;
 	SixWheelDrive *Drive;
 	//ShooterIntake *ShootIntake;
 
-	// Variables for Ian's implementation of dumb shooter.
-	Timer *timer;
-	bool lastShooterButton;
-	bool shoot;
-	//Timer for motion profiler
-	//Timer *Time;
-	//double CurrentTime=0;
+
+	Shooter *shooter;
 
 	SendableChooser *chooser;
 	Solenoid *solenoid;
@@ -47,23 +41,13 @@ private:
 	const std::string autoNameCustom = "My Auto";
 	std::string autoSelected;
 
-	Encoder* shooterEncoder;
-	DigitalInput *shooterIndex;
 	Encoder *RollerEncoder;
 
-	bool *ShooterReset;
 
 	void RobotInit()
 	{
-		//Experimental Vars
-
-		// Ian's dumb shooter init
-		lastShooterButton = false;
-		shoot = false;
-		timer = new Timer();
-		timer->Reset();
-
 		constants = new Constants();
+		shooter = new Shooter(constants);
 		Drivestick = new Joystick(0);
 		Operatorstick = new Joystick(1);
 		lw = LiveWindow::GetInstance();
@@ -74,12 +58,6 @@ private:
 
 		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 
-		shooterMotor1 = new VictorSP(constants->Get("shooterMotor1"));
-		shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
-
-		shooterMotor1->SetInverted(constants->Get("shooterMotor1Invert") == 1);
-		shooterMotor2->SetInverted(constants->Get("shooterMotor2Invert") == 1);
-
 		chooser = new SendableChooser();
 		chooser->AddDefault(autoNameDefault, (void*)&autoNameDefault);
 		chooser->AddObject(autoNameCustom, (void*)&autoNameCustom);
@@ -89,8 +67,6 @@ private:
 		//double CurrentTime=0;
 		//double Time;
 		//Timer Time;
-		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
-		shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
 		RollerEncoder = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 
 	}
@@ -138,18 +114,23 @@ private:
 				Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX")),
 				Drivestick->GetRawButton(constants->Get("HighShiftButton")),
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
-		//midRight->Set(rightFront->Get());
 
 		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * .5, 0);
+		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
+			shooter->Fire();
+			DriverStation::GetInstance().ReportError("FIRE!!!!!!RUN!!!!");
+		}
+		else{
+			shooter->Stop();
+		}
 
 	//	Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
 
 		//ShooterMoving
-		if(Drivestick->GetRawButton(11)){
-			shooterMotor1->Set(.05);
-		} else if(Drivestick->GetRawButton(12)){
-			shooterMotor2->Set(.05);
-		}
+
+			//Shooter::shooterMotor1->Set(Operatorstick->GetAxis((Joystick::AxisType)1)/4.0);
+			//Shooter::shooterMotor2->Set(Operatorstick->GetAxis((Joystick::AxisType)1)/4.0);
+
 	}
 
 	void DisabledPeriodic()
@@ -158,9 +139,9 @@ private:
 		char *Breakbeamy = new char[255];
 		char *stringy = new char[255];
 
-		sprintf(stringy, "ShooterEnc: %d\n", shooterEncoder->Get());
+		sprintf(stringy, "ShooterEnc: %d\n", (int)shooter->ReadEncoder());
 		DriverStation::GetInstance().ReportError(stringy);
-		sprintf(Breakbeamy, "ShooterIndex: %d\n", shooterIndex->Get());
+		sprintf(Breakbeamy, "ShooterIndex: %d\n", 2);
 		DriverStation::GetInstance().ReportError(Breakbeamy);
 		sprintf(Rollerencoder, "rollerEncoder: %d\n", RollerEncoder->Get());
 		DriverStation::GetInstance().ReportError(Rollerencoder);

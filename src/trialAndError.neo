@@ -47,6 +47,7 @@ shooterMotor1		6
 shooterMotor2		7
 shooterMotor1Invert	0
 shooterMotor2Invert	0
+shooterShootPoint	-2033
 
 shooterLengthSec	0.1
 shooterPower		1

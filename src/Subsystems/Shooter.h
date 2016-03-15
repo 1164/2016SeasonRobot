@@ -13,7 +13,7 @@ class Shooter: public PIDSubsystem
 {
 private:
 	Constants *constants;
-	//Encoder *shooterEncoder;
+	Encoder *shooterEncoder;
 	VictorSP *shooterMotor1;
 	VictorSP *shooterMotor2;
 	DigitalInput *shooterIndex;
@@ -23,6 +23,9 @@ public:
 	Shooter(Constants *ILoveLucy);
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
+	long ReadEncoder();
+	bool Fire();
+	void Stop();
 	void InitDefaultCommand();
 	bool AtSetpoint();
 
