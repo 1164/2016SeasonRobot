@@ -115,7 +115,7 @@ private:
 				Drivestick->GetRawButton(constants->Get("HighShiftButton")),
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 
-		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * .5, 0);
+		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
 		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
 			shooter->Fire();
 			DriverStation::GetInstance().ReportError("FIRE!!!!!!RUN!!!!");
