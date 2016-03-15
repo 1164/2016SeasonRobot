@@ -1,4 +1,5 @@
 #include "ShooterIntake.h"
+
 //#include "../RobotMap.h"
 
 ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
@@ -22,9 +23,11 @@ void ShooterIntake::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton){
+	int lastState = state;
 	switch(state){
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));
+			shooter->PIDSubsystem::Enable();
 			//Rollerarm->Update(constants->Get("rollerEncPoint"));
 
 			//default state in which the other states may be accessed from (done)
@@ -94,5 +97,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			state = CARRY;
 			break;
 	}
-
+	if (state != lastState){
+		shooter->ResetPID();
+	}
 }

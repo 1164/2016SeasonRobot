@@ -25,9 +25,11 @@ public:
 	void UsePIDOutput(double output);
 	long ReadEncoder();
 	bool Fire();
+	bool Intake();
 	void Stop();
 	void InitDefaultCommand();
 	bool AtSetpoint();
+	void ResetPID();
 
 
 };

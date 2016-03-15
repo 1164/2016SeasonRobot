@@ -30,10 +30,10 @@ private:
 
 	VictorSP *RollerMotor;
 	SixWheelDrive *Drive;
-	//ShooterIntake *ShootIntake;
+	ShooterIntake *ShootIntake;
 
 
-	Shooter *shooter;
+	//Shooter *shooter;
 
 	SendableChooser *chooser;
 	Solenoid *solenoid;
@@ -47,14 +47,13 @@ private:
 	void RobotInit()
 	{
 		constants = new Constants();
-		shooter = new Shooter(constants);
 		Drivestick = new Joystick(0);
 		Operatorstick = new Joystick(1);
 		lw = LiveWindow::GetInstance();
 		solenoid = new Solenoid(5);
 
 		Drive = new SixWheelDrive (constants);
-		//ShootIntake = new ShooterIntake (constants);
+		ShootIntake = new ShooterIntake (constants);
 
 		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 
@@ -116,13 +115,20 @@ private:
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 
 		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
-		if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
+		ShootIntake->Update(Operatorstick->GetRawButton(constants->Get("intakeButton")), false,
+				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false);
+		/*if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
 			shooter->Fire();
 			DriverStation::GetInstance().ReportError("FIRE!!!!!!RUN!!!!");
 		}
+
+		else if (Operatorstick->GetRawButton(constants->Get("intakeButton"))){
+			shooter->Intake();
+			DriverStation::GetInstance().ReportError("Intake that ball!!!");
+		}
 		else{
 			shooter->Stop();
-		}
+		}*/
 
 	//	Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
 
@@ -135,11 +141,12 @@ private:
 
 	void DisabledPeriodic()
 	{
+		ShootIntake->shooter->ResetPID();
 		char *Rollerencoder = new char[255];
 		char *Breakbeamy = new char[255];
 		char *stringy = new char[255];
 
-		sprintf(stringy, "ShooterEnc: %d\n", (int)shooter->ReadEncoder());
+		sprintf(stringy, "ShooterEnc: %d\n", (int)ShootIntake->shooter->ReadEncoder());
 		DriverStation::GetInstance().ReportError(stringy);
 		sprintf(Breakbeamy, "ShooterIndex: %d\n", 2);
 		DriverStation::GetInstance().ReportError(Breakbeamy);
@@ -149,19 +156,6 @@ private:
 		if(Drivestick->GetRawButton(11) || Drivestick->GetRawButton(12)){
 			DriverStation::GetInstance().ReportError("Button Press Registered");
 		}
-
-		//experimental code -sep
-		//to see if shooter is in reset position
-		/*
-
-		 if(shooterIndex->Get()){
-			if(ShooterReset){
-				ShooterReset = false;
-			} else {
-				ShooterReset = true;
-			}
-		}
-	*/
 	}
 
 	void TestPeriodic()

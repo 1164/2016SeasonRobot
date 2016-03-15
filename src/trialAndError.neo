@@ -30,14 +30,15 @@ rightBackInvert		0
 rightMidInvert		0
 rightFrontInvert	0
 
-shooterPGain		0
-shooterIGain		1
-shooterDGain		2
+shooterPGain		.001
+shooterIGain		.0001
+shooterDGain		.001
 
 shooterStateCARRY	-1
 shooterStateARMED	-1
 shooterStateSHOOT	-1
 shooterStateINTAKE	-1
+intakeButton		7
 shooterButton		8
 
 shooterEncoderA		5
@@ -55,7 +56,7 @@ shooterPower		1
 shooterDigitalIndex	4
 shootedDigitalIndex	-1
 
-CARRYSetPoint		2.0
+CARRYSetPoint		-500
 INTAKESetPoint		3.0
 ARMEDSetPoint		4.0
 SHOOTSetPoint		5.0

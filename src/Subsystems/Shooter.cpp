@@ -3,6 +3,8 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
 #include <Timer.h>
+#include "PIDController.h"
+#include <memory>
 
 
 
@@ -63,19 +65,46 @@ bool Shooter::Fire()
 
 
 }
+bool Shooter::Intake()
+{
+	if (shooterIndex->Get()==1){
+		shooterMotor1->Set(-.1);
+		shooterMotor2->Set(-.1);
+		return false;
+	}
+	else{
+		ReadEncoder(); //reads the above function in order to reset the encoder
+		Stop();
+		return true;
+	}
+}
 
 void Shooter::Stop() {
 	shooterMotor1->Set(0);
 	shooterMotor2->Set(0);
 }
 
+void Shooter::ResetPID() {
+	//PIDSubsystem::GetPIDController();
+	PIDSubsystem::GetPIDController()->Reset();
+}
+
 void Shooter::UsePIDOutput(double output)
 {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	//shooterMotor1->Set(output);
-	//
-	shooterMotor2->Set(output);
+	output = -output;
+	if (output > .3) {
+		shooterMotor1->Set(.3);
+		shooterMotor2->Set(.3);
+	} else if (output < -.1){
+		shooterMotor1->Set(-.1);
+		shooterMotor2->Set(-.1);
+	}else{
+		shooterMotor1->Set(output);
+		shooterMotor2->Set(output);
+	}
+
 }
 
 void Shooter::InitDefaultCommand()
