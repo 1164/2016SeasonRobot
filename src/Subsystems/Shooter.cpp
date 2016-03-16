@@ -12,7 +12,7 @@ Shooter::Shooter(Constants *ILoveLucy) :
 		PIDSubsystem("Shooter", 1.0, 0.0, 0.0)
 {
 	constants = ILoveLucy;
-	shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
+	shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"), false, Encoder::k1X);
 	shooterMotor1 = new VictorSP(constants->Get("shooterMotor1"));
 	shooterMotor2 = new VictorSP(constants->Get("shooterMotor2"));
 

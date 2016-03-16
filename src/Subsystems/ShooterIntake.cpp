@@ -11,7 +11,6 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 		state = CARRY;
 		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
 		shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
-		RollerEncoder = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 }
 
 void ShooterIntake::InitDefaultCommand()
@@ -42,8 +41,9 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			}
 			break;
 		case INTAKE:
-			shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
-			shooter->PIDSubsystem::Enable();
+			//shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
+			shooter->PIDSubsystem::Disable();
+			shooter->Intake();
 			//Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
 			//shooter position fully down (a)... break beam sensor
@@ -84,18 +84,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 				state = CARRY;
 				}
 			break;
-		/*case RELEASE:
-			//Rollerarm->Update(constants->Get("rollerEncPoint"));
-			//roller goes down to mid to down
-			//roller inverts the roller motor
-			//Intake->SetInverted(constants->Get("RollerOuttake")==1); //edit to create accurate
-			//shooter into intake position
-			if (!ReleaseButton && shooter->AtSetpoint()){
 
-			}
-
-			break;
-			*/
 		default: std::cout<<"default\n"; //no error
 			state = CARRY;
 			break;

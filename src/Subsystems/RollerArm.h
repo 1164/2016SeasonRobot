@@ -17,6 +17,7 @@ public:
 	RollerArm(Constants *Ethel);
 	void InitDefaultCommand();
 	void Update(double setpoint);
+	double GetPosition();
 };
 
 #endif

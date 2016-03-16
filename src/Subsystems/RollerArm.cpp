@@ -13,6 +13,10 @@ RollerArm::RollerArm(Constants *Ethel) :
 
 }
 
+double RollerArm::GetPosition() {
+	return RollerControl->GetPosition();
+}
+
 void RollerArm::InitDefaultCommand()
 {
 	// Set the default command for a subsystem here.

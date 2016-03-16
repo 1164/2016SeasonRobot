@@ -66,7 +66,7 @@ private:
 		//double CurrentTime=0;
 		//double Time;
 		//Timer Time;
-		RollerEncoder = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
+		//RollerEncoder = new Encoder(constants->Get("RollerEncoderArmA"), constants->Get("RollerEncoderArmB"));
 
 	}
 
@@ -118,25 +118,9 @@ private:
 		ShootIntake->Update(Operatorstick->GetRawButton(constants->Get("intakeButton")),
 				Operatorstick->GetRawButton(constants->Get("armedButton")),
 				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false);
-		/*if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
-			shooter->Fire();
-			DriverStation::GetInstance().ReportError("FIRE!!!!!!RUN!!!!");
-		}
 
-		else if (Operatorstick->GetRawButton(constants->Get("intakeButton"))){
-			shooter->Intake();
-			DriverStation::GetInstance().ReportError("Intake that ball!!!");
-		}
-		else{
-			shooter->Stop();
-		}*/
-
-	//	Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")) && RollerArm::RollerControl;
-
-		//ShooterMoving
-
-			//Shooter::shooterMotor1->Set(Operatorstick->GetAxis((Joystick::AxisType)1)/4.0);
-			//Shooter::shooterMotor2->Set(Operatorstick->GetAxis((Joystick::AxisType)1)/4.0);
+		ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
+				//&& RollerArm::RollerControl;
 
 	}
 
@@ -151,7 +135,7 @@ private:
 		DriverStation::GetInstance().ReportError(stringy);
 		sprintf(Breakbeamy, "ShooterIndex: %d\n", 2);
 		DriverStation::GetInstance().ReportError(Breakbeamy);
-		sprintf(Rollerencoder, "rollerEncoder: %d\n", RollerEncoder->Get());
+		sprintf(Rollerencoder, "rollerEncoder: %lf\n", ShootIntake->Rollerarm->GetPosition());
 		DriverStation::GetInstance().ReportError(Rollerencoder);
 
 		if(Drivestick->GetRawButton(11) || Drivestick->GetRawButton(12)){

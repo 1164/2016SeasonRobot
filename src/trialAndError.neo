@@ -60,7 +60,7 @@ shootedDigitalIndex	-1
 
 CARRYSetPoint		-500
 INTAKESetPoint		0
-ARMEDSetPoint		-250
+ARMEDSetPoint		0
 
 
 RollerIntake		15
