@@ -18,6 +18,7 @@ public:
 	void InitDefaultCommand();
 	void Update(double setpoint);
 	double GetPosition();
+	void Set(double setArm);
 };
 
 #endif

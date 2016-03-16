@@ -27,6 +27,7 @@ void Constants::reloadFile(){
 
 		}
 	}
+	myfile.close();
 }
 
 double Constants::Get(string constantName){

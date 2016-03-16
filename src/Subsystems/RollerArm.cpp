@@ -28,3 +28,7 @@ void RollerArm::InitDefaultCommand()
 void RollerArm::Update(double setpoint){
 
 }
+
+void RollerArm::Set(double setArm){
+	RollerControl ->Set(setArm);
+}

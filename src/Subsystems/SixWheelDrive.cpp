@@ -24,11 +24,11 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	RightWheelEncoder = new Encoder(constants->Get("RightEncoderA"), constants->Get("RightEncoderB"));
 	LeftWheelEncoder = new Encoder(constants->Get("LeftEncoderA"), constants->Get("LeftEncoderB"));
 	Drive->SetSafetyEnabled(false);
-	try {
+	/*try {
 		/* Communicate w/navX-MXP via the MXP SPI Bus.                                       */
 		/* Alternatively:  I2C::Port::kMXP, SerialPort::Port::kMXP or SerialPort::Port::kUSB */
 		/* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details.   */
-		ahrs = new AHRS(SPI::Port::kMXP);
+		/*ahrs = new AHRS(SPI::Port::kMXP);
 	} catch (std::exception ex ) {
 		std::string err_string = "Error instantiating navX-MXP:  ";
 		err_string += ex.what();
@@ -36,7 +36,7 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	if (ahrs){
 		LiveWindow::GetInstance()->AddSensor("IMU", "Angle", ahrs);
 	}
-	}
+	}*/
 
 }
 
