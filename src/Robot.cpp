@@ -115,7 +115,8 @@ private:
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 
 		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
-		ShootIntake->Update(Operatorstick->GetRawButton(constants->Get("intakeButton")), false,
+		ShootIntake->Update(Operatorstick->GetRawButton(constants->Get("intakeButton")),
+				Operatorstick->GetRawButton(constants->Get("armedButton")),
 				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false);
 		/*if (Operatorstick->GetRawButton(constants->Get("shooterButton"))){
 			shooter->Fire();

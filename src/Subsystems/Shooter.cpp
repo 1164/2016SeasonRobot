@@ -29,7 +29,7 @@ Shooter::Shooter(Constants *ILoveLucy) :
 }
 
 bool Shooter::AtSetpoint(){
-	return false;
+	return abs(GetSetpoint()-GetPosition()) < constants->Get("shooterDeadband");
 }
 
 double Shooter::ReturnPIDInput()

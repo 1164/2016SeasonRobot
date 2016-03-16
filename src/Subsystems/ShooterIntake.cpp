@@ -43,6 +43,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			break;
 		case INTAKE:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
+			shooter->PIDSubsystem::Enable();
 			//Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
 			//shooter position fully down (a)... break beam sensor
@@ -55,7 +56,8 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			break;
 		case ARMED:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("ARMEDSetPoint"));
-			Rollerarm->Update(constants->Get("rollerEncPoint"));
+			shooter->PIDSubsystem::Enable();
+			//Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when armed button is pressed, otherwise carry
 			//lower shooter for prep to shoot
 			//have roller mid/off...rotary encoder...break beam sensor
@@ -69,6 +71,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			}
 			break;
 		case SHOOT:
+			shooter->PIDSubsystem::Disable();
 			//Rollerarm->Update(constants->Get("rollerEncPoint"));
 
 			//not sure how we are going to proceed with this// shooter->PIDSubsystem::SetSetpoint(constants->Get("SHOOTSetPoint"));
@@ -77,7 +80,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//intake user
 			//shooter launch
 			//reset to carry position(b)->carry
-			if (!ShootButton && shooter->Fire()){
+			if (shooter->Fire()){
 				state = CARRY;
 				}
 			break;
