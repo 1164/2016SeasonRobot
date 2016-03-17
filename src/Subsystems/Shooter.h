@@ -16,7 +16,6 @@ private:
 	Encoder *shooterEncoder;
 	VictorSP *shooterMotor1;
 	VictorSP *shooterMotor2;
-	DigitalInput *shooterIndex;
 	Timer *motorTimer;
 
 public:
@@ -30,6 +29,7 @@ public:
 	void InitDefaultCommand();
 	bool AtSetpoint();
 	void ResetPID();
+	DigitalInput *shooterIndex;
 
 
 };

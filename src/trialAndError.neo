@@ -30,9 +30,9 @@ rightBackInvert		1
 rightMidInvert		1
 rightFrontInvert	1
 
-shooterPGain		.001
+shooterPGain		.00075
 shooterIGain		.0001
-shooterDGain		.00075
+shooterDGain		.0005
 
 shooterStateCARRY	-1
 shooterStateARMED	-1
@@ -60,7 +60,7 @@ shootedDigitalIndex	-1
 
 CARRYSetPoint		-500
 INTAKESetPoint		0
-ARMEDSetPoint		0
+ARMEDSetPoint		-500
 
 
 RollerIntake		15

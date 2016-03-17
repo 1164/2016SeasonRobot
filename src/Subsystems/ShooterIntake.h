@@ -21,9 +21,7 @@ class ShooterIntake: public Subsystem
 private:
 	int state;
 	Constants *constants;
-	VictorSP *Roller;
 	Encoder *shooterEncoder;
-	DigitalInput *shooterIndex;
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
@@ -34,6 +32,7 @@ public:
 	void RollerInvert(bool OuttakeButton, bool IntakeButton);
 	Shooter *shooter;
 	RollerArm *Rollerarm;
+	VictorSP *RollerMotor;
 };
 
 #endif

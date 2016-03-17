@@ -28,7 +28,6 @@ private:
 	Joystick *Operatorstick;
 	Constants *constants;
 
-	VictorSP *RollerMotor;
 	SixWheelDrive *Drive;
 	ShooterIntake *ShootIntake;
 
@@ -54,8 +53,6 @@ private:
 
 		Drive = new SixWheelDrive (constants);
 		ShootIntake = new ShooterIntake (constants);
-
-		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 
 		chooser = new SendableChooser();
 		chooser->AddDefault(autoNameDefault, (void*)&autoNameDefault);
@@ -113,13 +110,24 @@ private:
 				Drivestick->GetAxis((Joystick::AxisType)constants->Get("DriveAxisX")),
 				Drivestick->GetRawButton(constants->Get("HighShiftButton")),
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
+		if(ShootIntake->shooter->shooterIndex->Get()==false){
+			ShootIntake->RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
+		}
+		else{
+			ShootIntake->RollerMotor->Set(0);
+		}
 
-		RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
+		//ShootIntake->RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
 		ShootIntake->Update(Operatorstick->GetRawButton(constants->Get("intakeButton")),
 				Operatorstick->GetRawButton(constants->Get("armedButton")),
 				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false);
 
 		ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
+
+
+		char *Rollerencoder = new char[255];
+		sprintf(Rollerencoder, "rollerEncoder: %lf\n", ShootIntake->Rollerarm->GetPosition());
+		DriverStation::GetInstance().ReportError(Rollerencoder);
 
 	}
 
@@ -137,9 +145,6 @@ private:
 		sprintf(Rollerencoder, "rollerEncoder: %lf\n", ShootIntake->Rollerarm->GetPosition());
 		DriverStation::GetInstance().ReportError(Rollerencoder);
 
-		if(Drivestick->GetRawButton(11) || Drivestick->GetRawButton(12)){
-			DriverStation::GetInstance().ReportError("Button Press Registered");
-		}
 	}
 
 	void TestPeriodic()

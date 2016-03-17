@@ -1,4 +1,5 @@
 #include "ShooterIntake.h"
+#include "RollerArm.h"
 
 //#include "../RobotMap.h"
 
@@ -7,10 +8,10 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 {
 		constants = RickyRicardo;
 		shooter = new Shooter(constants);
+		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 		Rollerarm = new RollerArm(constants);
 		state = CARRY;
 		shooterEncoder = new Encoder(constants->Get("shooterEncoderA"), constants->Get("shooterEncoderB"));
-		shooterIndex = new DigitalInput(constants->Get("shooterDigitalIndex"));
 }
 
 void ShooterIntake::InitDefaultCommand()
@@ -33,6 +34,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//shooter in middle position(b) (done/setpoint)
 			//roller up/off
 			//intake user
+
 			if (IntakeButton){
 				state = INTAKE;
 			}
@@ -62,6 +64,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//lower shooter for prep to shoot
 			//have roller mid/off...rotary encoder...break beam sensor
 			//intake used
+
 			if (ShootButton && shooter->AtSetpoint()){
 				state = SHOOT;
 			}
@@ -80,6 +83,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//intake user
 			//shooter launch
 			//reset to carry position(b)->carry
+
 			if (shooter->Fire()){
 				state = CARRY;
 				}
