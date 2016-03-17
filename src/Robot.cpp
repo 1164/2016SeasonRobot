@@ -120,7 +120,6 @@ private:
 				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false);
 
 		ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
-				//&& RollerArm::RollerControl;
 
 	}
 

@@ -6,12 +6,12 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 		Subsystem("SixWheeelDrive")
 {
 	constants = LucielleBall;
-	leftBack = new VictorSP(constants->Get("backLeftDrive")); //VictorSP
-	rightBack  = new VictorSP(constants->Get("backRightDrive"));//VictorSP
-	leftFront  = new VictorSP(constants->Get("frontLeftDrive"));//VictorSP
-	rightFront  = new VictorSP(constants->Get("frontRightDrive"));//VictorSP
-	leftMid = new VictorSP(constants->Get("leftMidDrive"));//VictorSP
-	rightMid = new VictorSP(constants->Get("rightMidDrive"));//VictorSP
+	leftBack = new VictorSP(constants->Get("backLeftDrive"));
+	rightBack  = new VictorSP(constants->Get("backRightDrive"));
+	leftFront  = new VictorSP(constants->Get("frontLeftDrive"));
+	rightFront  = new VictorSP(constants->Get("frontRightDrive"));
+	leftMid = new VictorSP(constants->Get("leftMidDrive"));
+	rightMid = new VictorSP(constants->Get("rightMidDrive"));
 	leftBack->SetInverted(constants->Get("leftBackInvert")== 1);
 	leftMid->SetInverted(constants->Get("leftMidInvert")== 1);
 	leftFront->SetInverted(constants->Get("leftFrontInvert")== 1);
@@ -24,6 +24,9 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	RightWheelEncoder = new Encoder(constants->Get("RightEncoderA"), constants->Get("RightEncoderB"));
 	LeftWheelEncoder = new Encoder(constants->Get("LeftEncoderA"), constants->Get("LeftEncoderB"));
 	Drive->SetSafetyEnabled(false);
+
+	//Navx freaks out the upload so the whole thing is commented out to make it easier for competition
+
 	/*try {
 		/* Communicate w/navX-MXP via the MXP SPI Bus.                                       */
 		/* Alternatively:  I2C::Port::kMXP, SerialPort::Port::kMXP or SerialPort::Port::kUSB */
