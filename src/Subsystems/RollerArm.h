@@ -12,13 +12,13 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 	Constants *constants;
-	CANTalon *RollerControl;
 public:
 	RollerArm(Constants *Ethel);
 	void InitDefaultCommand();
 	void Update(double setpoint);
 	double GetPosition();
 	void Set(double setArm);
+	CANTalon *RollerControl;
 };
 
 #endif

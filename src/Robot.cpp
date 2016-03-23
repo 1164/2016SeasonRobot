@@ -30,7 +30,7 @@ private:
 
 	SixWheelDrive *Drive;
 	ShooterIntake *ShootIntake;
-	RollerArm *ArmRoller;
+	//RollerArm *ArmRoller;
 
 
 	//Shooter *shooter;
@@ -41,7 +41,7 @@ private:
 	const std::string autoNameCustom = "My Auto";
 	std::string autoSelected;
 
-	Encoder *RollerEncoder;
+	//Encoder *RollerEncoder;
 
 
 	void RobotInit()
@@ -147,7 +147,8 @@ private:
 		DriverStation::GetInstance().ReportError(Breakbeamy);
 		sprintf(Rollerencoder, "rollerEncoder: %lf\n", ShootIntake->Rollerarm->GetPosition());
 		DriverStation::GetInstance().ReportError(Rollerencoder);
-		sprintf(Halleffect, "HallEffect: %d\n", ShootIntake->HallEffect->Get());
+		sprintf(Halleffect, "HallEffect: %d\n", ShootIntake->Rollerarm->RollerControl->GetPinStateQuadIdx());
+		DriverStation::GetInstance().ReportError(Halleffect);
 
 	}
 

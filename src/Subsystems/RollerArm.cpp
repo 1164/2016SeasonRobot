@@ -7,10 +7,18 @@ RollerArm::RollerArm(Constants *Ethel) :
 	constants = Ethel;
 	RollerControl = new CANTalon(constants->Get("RollerArmControl"));
 
+	//RollerControl->EnableZeroSensorPositionOnIndex(true, true);
+
 	RollerControl->SetPID(constants->Get("RollerArmControlP"), constants->Get("RollerArmControlI"), constants->Get("RollerArmControlD"));
 	RollerControl->SetCloseLoopRampRate(constants->Get("RCloseLoopRampRate"));
 	RollerControl->SetIzone(constants->Get("RollerArmControlIzone"));
+	//RollerControl->GetPinStateQuadIdx();
+	/* if(RollerControl->GetPinStateQuadIdx()==#){
+	 	 	ResetEncoder();
+	 	 	}
+	 */
 
+	RollerControl->EnableZeroSensorPositionOnIndex(true, false);
 }
 
 double RollerArm::GetPosition() {

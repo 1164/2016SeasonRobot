@@ -33,7 +33,6 @@ public:
 	Shooter *shooter;
 	RollerArm *Rollerarm;
 	VictorSP *RollerMotor;
-	DigitalInput *HallEffect;
 };
 
 #endif

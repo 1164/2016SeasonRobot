@@ -7,7 +7,6 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 		Subsystem("ShoooterIntake")
 {
 		constants = RickyRicardo;
-		HallEffect = new DigitalInput(4);
 		shooter = new Shooter(constants);
 		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 		Rollerarm = new RollerArm(constants);
