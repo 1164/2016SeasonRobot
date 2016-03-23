@@ -7,6 +7,7 @@ ShooterIntake::ShooterIntake(Constants *RickyRicardo) :
 		Subsystem("ShoooterIntake")
 {
 		constants = RickyRicardo;
+		HallEffect = new DigitalInput(4);
 		shooter = new Shooter(constants);
 		RollerMotor = new VictorSP(constants->Get("RollerMotor"));
 		Rollerarm = new RollerArm(constants);
@@ -46,7 +47,7 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
 			shooter->PIDSubsystem::Disable();
 			shooter->Intake();
-			//Rollerarm->Update(constants->Get("rollerEncPoint"));
+			Rollerarm->Update(constants->Get("rollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
 			//shooter position fully down (a)... break beam sensor
 			//roller mid to down...rotary encoder...break beam sensor
@@ -60,29 +61,25 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("ARMEDSetPoint"));
 			shooter->PIDSubsystem::Enable();
 			//Rollerarm->Update(constants->Get("rollerEncPoint"));
-			//activate when armed button is pressed, otherwise carry
 			//lower shooter for prep to shoot
 			//have roller mid/off...rotary encoder...break beam sensor
-			//intake used
 
 			if (ShootButton && shooter->AtSetpoint()){
 				state = SHOOT;
 			}
 			if(!ArmedButton){
 				state = CARRY;
-				// if armed button isn't held down, it will revert to carry
 			}
 			break;
 		case SHOOT:
 			shooter->PIDSubsystem::Disable();
 			//Rollerarm->Update(constants->Get("rollerEncPoint"));
 
-			//not sure how we are going to proceed with this// shooter->PIDSubsystem::SetSetpoint(constants->Get("SHOOTSetPoint"));
+			//not sure how we are going to proceed with this
 			//only from armed if shoot button pressed otherwise, carry
 			//roller off/mid...rotary encoder...break beam sensor
 			//intake user
 			//shooter launch
-			//reset to carry position(b)->carry
 
 			if (shooter->Fire()){
 				state = CARRY;

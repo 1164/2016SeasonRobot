@@ -30,6 +30,7 @@ private:
 
 	SixWheelDrive *Drive;
 	ShooterIntake *ShootIntake;
+	RollerArm *ArmRoller;
 
 
 	//Shooter *shooter;
@@ -125,6 +126,7 @@ private:
 		ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
 
 
+
 		char *Rollerencoder = new char[255];
 		sprintf(Rollerencoder, "rollerEncoder: %lf\n", ShootIntake->Rollerarm->GetPosition());
 		DriverStation::GetInstance().ReportError(Rollerencoder);
@@ -137,6 +139,7 @@ private:
 		char *Rollerencoder = new char[255];
 		char *Breakbeamy = new char[255];
 		char *stringy = new char[255];
+		char *Halleffect = new char[255];
 
 		sprintf(stringy, "ShooterEnc: %d\n", (int)ShootIntake->shooter->ReadEncoder());
 		DriverStation::GetInstance().ReportError(stringy);
@@ -144,6 +147,7 @@ private:
 		DriverStation::GetInstance().ReportError(Breakbeamy);
 		sprintf(Rollerencoder, "rollerEncoder: %lf\n", ShootIntake->Rollerarm->GetPosition());
 		DriverStation::GetInstance().ReportError(Rollerencoder);
+		sprintf(Halleffect, "HallEffect: %d\n", ShootIntake->HallEffect->Get());
 
 	}
 

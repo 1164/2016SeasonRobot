@@ -56,17 +56,12 @@ shooterLengthSec	0.1
 shooterPower		1
 
 shooterDigitalIndex	4
-shootedDigitalIndex	-1
 
 CARRYSetPoint		-500
 INTAKESetPoint		0
 ARMEDSetPoint		-500
 
 
-RollerIntake		15
-RollerOuttake		16
-RollerUp			17
-RollerDown			18
 RollerEncoderArmA	7
 RollerEncoderArmB	8
 RollerArmControl	0
