@@ -8,17 +8,13 @@ RollerArm::RollerArm(Constants *Ethel) :
 	RollerControl = new CANTalon(constants->Get("RollerArmControl"));
 
 	//RollerControl->EnableZeroSensorPositionOnIndex(true, true);
-
+	RollerControl->SetFeedbackDevice(CANTalon::QuadEncoder);
 	RollerControl->SetPID(constants->Get("RollerArmControlP"), constants->Get("RollerArmControlI"), constants->Get("RollerArmControlD"));
-	RollerControl->SetCloseLoopRampRate(constants->Get("RCloseLoopRampRate"));
+	//RollerControl->SetCloseLoopRampRate(constants->Get("RCloseLoopRampRate"));
 	RollerControl->SetIzone(constants->Get("RollerArmControlIzone"));
 	//RollerControl->GetPinStateQuadIdx();
-	/* if(RollerControl->GetPinStateQuadIdx()==#){
-	 	 	ResetEncoder();
-	 	 	}
-	 */
 
-	RollerControl->EnableZeroSensorPositionOnIndex(true, false);
+	//RollerControl->EnableZeroSensorPositionOnIndex(false, true);
 }
 
 double RollerArm::GetPosition() {
@@ -34,7 +30,9 @@ void RollerArm::InitDefaultCommand()
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 void RollerArm::Update(double setpoint){
-
+	RollerControl->SetControlMode(CANSpeedController::kPosition);
+	RollerControl->Enable();
+	RollerControl->Set(setpoint);
 }
 
 void RollerArm::Set(double setArm){

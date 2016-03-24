@@ -123,7 +123,10 @@ private:
 				Operatorstick->GetRawButton(constants->Get("armedButton")),
 				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false);
 
-		ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
+		//ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
+		if(ShootIntake->Rollerarm->RollerControl->GetPinStateQuadIdx()==0){
+				 	 	ShootIntake->Rollerarm->RollerControl->SetPosition(0);
+				 	 	}
 
 
 
@@ -135,6 +138,7 @@ private:
 
 	void DisabledPeriodic()
 	{
+
 		ShootIntake->shooter->ResetPID();
 		char *Rollerencoder = new char[255];
 		char *Breakbeamy = new char[255];

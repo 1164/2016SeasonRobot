@@ -67,11 +67,11 @@ RollerEncoderArmB	8
 RollerArmControl	0
 RollerAControl		1
 
-RollerEncPoint		33
+RollerEncPoint		10155
 
-RollerArmControlP	1
-RollerArmControlI	1
-RollerArmControlD	1
+RollerArmControlP	0.0002363507
+RollerArmControlI	0
+RollerArmControlD	0
 RollerArmControlIzone	0
 RCloseLoopRampRate	0
 
