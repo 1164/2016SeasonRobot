@@ -44,9 +44,9 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			break;
 		case INTAKE:
 			//shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
-			shooter->PIDSubsystem::Disable();
+			//shooter->PIDSubsystem::Disable();
 			shooter->Intake();
-			Rollerarm->Update(constants->Get("RollerEncPoint"));
+			//Rollerarm->Update(constants->Get("RollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
 			//shooter position fully down (a)... break beam sensor
 			//roller mid to down...rotary encoder...break beam sensor
