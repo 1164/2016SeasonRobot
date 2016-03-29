@@ -19,7 +19,7 @@ HighShiftButton		5
 LowShiftButton		7
 
 HighGearYGain		1
-HighGearXGain		-1
+HighGearXGain		-0.5
 LowGearYGain		1
 LowGearXGain		-1
 
@@ -67,13 +67,17 @@ RollerEncoderArmB	8
 RollerArmControl	0
 RollerAControl		1
 
-RollerEncPoint		10155
+RollerEncPoint		17155
+RollerEncArmed		4500
 
-RollerArmControlP	0.0002363507
-RollerArmControlI	0
-RollerArmControlD	0
-RollerArmControlIzone	0
+RollerArmControlP	0.05
+RollerArmControlI	0.0001
+RollerArmControlD	0.0002
+RollerArmControlIzone	5000
 RCloseLoopRampRate	0
+
+RollerMaxVoltageDown	2
+RollerMaxVoltageUp		-12
 
 RollerMotor			8
 RollerMotorY		3

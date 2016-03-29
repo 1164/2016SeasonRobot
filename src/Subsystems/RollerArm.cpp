@@ -13,11 +13,16 @@ RollerArm::RollerArm(Constants *Ethel) :
 	//RollerControl->SetCloseLoopRampRate(constants->Get("RCloseLoopRampRate"));
 	RollerControl->SetIzone(constants->Get("RollerArmControlIzone"));
 	//RollerControl->GetPinStateQuadIdx();
+	//RollerControl->ConfigPeakOutputVoltage(constants->Get("RollerMaxVoltageDown"),constants->Get("RollerMaxVoltageUp"));
 
 	//RollerControl->EnableZeroSensorPositionOnIndex(false, true);
 }
 
 double RollerArm::GetPosition() {
+	RollerControl->ConfigPeakOutputVoltage(constants->Get("RollerMaxVoltageDown"),constants->Get("RollerMaxVoltageUp"));
+	if (RollerControl->GetPinStateQuadIdx() == 0) {
+		RollerControl->SetPosition(0);
+	}
 	return RollerControl->GetPosition();
 }
 
