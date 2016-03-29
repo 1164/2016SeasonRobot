@@ -6,6 +6,9 @@ RollerArm::RollerArm(Constants *Ethel) :
 {
 	constants = Ethel;
 	RollerControl = new CANTalon(constants->Get("RollerArmControl"));
+	lastIntakeButton = false;
+	lastArmedButton = false;
+
 
 	//RollerControl->EnableZeroSensorPositionOnIndex(true, true);
 	RollerControl->SetFeedbackDevice(CANTalon::QuadEncoder);
@@ -34,10 +37,27 @@ void RollerArm::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void RollerArm::Update(double setpoint){
+void RollerArm::Update(double joystick, bool IntakeButton, bool ArmedButton){
 	RollerControl->SetControlMode(CANSpeedController::kPosition);
 	RollerControl->Enable();
-	RollerControl->Set(setpoint);
+	if(IntakeButton == true && lastIntakeButton == false){
+		RollerControl->Set(constants->Get("RollerEncPoint"));
+	}
+	if(ArmedButton == true && lastArmedButton == false){
+		RollerControl->Set(constants->Get("RollerEncArmed"));
+	}
+	if(joystick > 0.5){
+		RollerControl->Set(RollerControl->GetSetpoint() -1.0);
+	}
+	if(joystick < -0.5){
+		RollerControl->Set(RollerControl->GetSetpoint() +1.0);
+	}
+
+
+	lastArmedButton = ArmedButton;
+	lastIntakeButton = IntakeButton;
+
+
 }
 
 void RollerArm::Set(double setArm){

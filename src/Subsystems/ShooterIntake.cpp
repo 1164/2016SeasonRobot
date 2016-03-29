@@ -22,8 +22,9 @@ void ShooterIntake::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton){
+void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton, double RollerAxis){
 	int lastState = state;
+	Rollerarm->Update(constants->Get("RollerEncArmed"), IntakeButton, ArmedButton);
 	switch(state){
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));
@@ -46,7 +47,6 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 			//shooter->PIDSubsystem::SetSetpoint(constants->Get("INTAKESetPoint"));
 			shooter->PIDSubsystem::Disable();
 			shooter->Intake();
-			Rollerarm->Update(constants->Get("RollerEncPoint"));
 			//activate when intake button pressed & continue when pressed once button release-> carry
 			//shooter position fully down (a)... break beam sensor
 			//roller mid to down...rotary encoder...break beam sensor
@@ -59,7 +59,6 @@ void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton
 		case ARMED:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("ARMEDSetPoint"));
 			shooter->PIDSubsystem::Enable();
-			Rollerarm->Update(constants->Get("RollerEncArmed"));
 			//lower shooter for prep to shoot
 			//have roller mid/off...rotary encoder...break beam sensor
 
