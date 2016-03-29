@@ -24,7 +24,7 @@ void ShooterIntake::InitDefaultCommand()
 // here. Call these from Commands.
 void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton, double RollerAxis){
 	int lastState = state;
-	Rollerarm->Update(constants->Get("RollerEncArmed"), IntakeButton, ArmedButton);
+	Rollerarm->Update(RollerAxis, IntakeButton, ArmedButton);
 	switch(state){
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));

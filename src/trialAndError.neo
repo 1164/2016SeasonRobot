@@ -70,6 +70,8 @@ RollerAControl		1
 RollerEncPoint		17155
 RollerEncArmed		4500
 
+RollerArmGain		100.0
+
 RollerArmControlP	0.05
 RollerArmControlI	0.0001
 RollerArmControlD	0.0002
