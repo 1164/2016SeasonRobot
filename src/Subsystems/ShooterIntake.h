@@ -28,7 +28,7 @@ private:
 public:
 	ShooterIntake(Constants *RickyRicardo);
 	void InitDefaultCommand();
-	void Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton, double RollerAxis);
+	void Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool DownRollButton, bool UpRollButton, double RollerAxis);
 	void RollerInvert(bool OuttakeButton, bool IntakeButton);
 	Shooter *shooter;
 	RollerArm *Rollerarm;

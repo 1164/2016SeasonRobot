@@ -22,9 +22,9 @@ void ShooterIntake::InitDefaultCommand()
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
-void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool ReleaseButton, bool CarryButton, double RollerAxis){
+void ShooterIntake::Update(bool IntakeButton, bool ArmedButton, bool ShootButton, bool DownRollButton, bool UpRollButton, double RollerAxis){
 	int lastState = state;
-	Rollerarm->Update(RollerAxis, IntakeButton, ArmedButton);
+	Rollerarm->Update(RollerAxis, IntakeButton, ArmedButton,DownRollButton, UpRollButton);
 	switch(state){
 		case CARRY:
 			shooter->PIDSubsystem::SetSetpoint(constants->Get("CARRYSetPoint"));

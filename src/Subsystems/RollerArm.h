@@ -14,10 +14,15 @@ private:
 	Constants *constants;
 	bool lastIntakeButton;
 	bool lastArmedButton;
+	bool lastUpButton;
+	bool lastDownButton;
+	double CurrentSetPoint;
+
+	bool upState;
 public:
 	RollerArm(Constants *Ethel);
 	void InitDefaultCommand();
-	void Update(double joystick, bool IntakeButton, bool ArmedButton);
+	void Update(double joystick, bool IntakeButton, bool ArmedButton, bool DownButton, bool UpButton);
 	double GetPosition();
 	void Set(double setArm);
 	CANTalon *RollerControl;

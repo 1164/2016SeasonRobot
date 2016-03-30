@@ -121,7 +121,7 @@ private:
 
 		ShootIntake->Update(Operatorstick->GetRawButton(constants->Get("intakeButton")),
 				Operatorstick->GetRawButton(constants->Get("armedButton")),
-				Operatorstick->GetRawButton(constants->Get("shooterButton")), false, false, Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
+				Operatorstick->GetRawButton(constants->Get("shooterButton")), Operatorstick->GetRawButton(constants->Get("DownRollerButton")), Operatorstick->GetRawButton(constants->Get("UpRollerButton")), Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
 
 		//ShootIntake->Rollerarm->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerAControl")));
 		if(ShootIntake->Rollerarm->RollerControl->GetPinStateQuadIdx()==0){

@@ -18,6 +18,9 @@ DriveAxisY			1
 HighShiftButton		5
 LowShiftButton		7
 
+UpRollerButton		3
+DownRollerButton	1
+
 HighGearYGain		1
 HighGearXGain		-0.5
 LowGearYGain		1
@@ -69,8 +72,12 @@ RollerAControl		1
 
 RollerEncPoint		17155
 RollerEncArmed		4500
+RollerEncDown		20000
+RollerEncUp			0
+RollerUpSpeed		-.5
 
-RollerArmGain		100.0
+
+RollerArmGain		200.0
 
 RollerArmControlP	0.05
 RollerArmControlI	0.0001
