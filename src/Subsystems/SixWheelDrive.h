@@ -24,6 +24,7 @@ private:
 	VictorSP *rightMid;//VictorSP
 	VictorSP *leftMid;//VictorSP
 	Solenoid *shifter;
+	//Solenoid *shifter2; // CAT REMOVE COMMENT IF DOUBLE SOLENOID
 	Encoder *RightWheelEncoder;
 	Encoder *LeftWheelEncoder;
 	bool ShifterTest;

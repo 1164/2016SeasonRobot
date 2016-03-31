@@ -20,6 +20,7 @@ SixWheelDrive::SixWheelDrive(Constants *LucielleBall) :
 	rightFront->SetInverted(constants->Get("rightFrontInvert")== 1);
 	Drive = new RobotDrive (leftFront, leftBack, rightFront, rightBack);
 	shifter = new Solenoid(constants->Get("ShifterSolenoid"));
+	// shifter2 = new Solenoid(constants->Get("ShifterSolenoid2")); // CAT REMOVE COMMENT IF DOUBLE SOLENOID
 	ShifterTest = false;
 	RightWheelEncoder = new Encoder(constants->Get("RightEncoderA"), constants->Get("RightEncoderB"));
 	LeftWheelEncoder = new Encoder(constants->Get("LeftEncoderA"), constants->Get("LeftEncoderB"));
@@ -122,5 +123,6 @@ void SixWheelDrive::arcadeDrive(float Y, float X, bool isHighGear){
 	ShifterTest=isHighGear;
 
 	shifter->Set(ShifterTest);
+	// shifter2->Set(!ShifterTest); // CAT REMOVE COMMENT IF NEEDS DOUBLE SOLENOID
 }
 
