@@ -11,6 +11,7 @@ RightEncoderA		2
 RightEncoderB		3
 
 ShifterSolenoid		4
+ShifterSolenoid2	6
 
 DriveAxisX			2
 DriveAxisY			1
@@ -64,6 +65,12 @@ CARRYSetPoint		-500
 INTAKESetPoint		0
 ARMEDSetPoint		-500
 
+flipper1			0
+flipper2			1
+
+flipperOut			1
+
+rollerMotorGain		.75
 
 RollerEncoderArmA	7
 RollerEncoderArmB	8
@@ -81,7 +88,7 @@ RollerArmGain		200.0
 
 RollerArmControlP	0.05
 RollerArmControlI	0.0001
-RollerArmControlD	0.0002
+RollerArmControlD	0.003
 RollerArmControlIzone	5000
 RCloseLoopRampRate	0
 
