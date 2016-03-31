@@ -112,7 +112,7 @@ private:
 				Drivestick->GetRawButton(constants->Get("HighShiftButton")),
 				Drivestick->GetRawButton(constants->Get("LowShiftButton")));
 		if(ShootIntake->shooter->shooterIndex->Get()==false){
-			ShootIntake->RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * 1, 0);
+			ShootIntake->RollerMotor->Set(Operatorstick->GetAxis((Joystick::AxisType)constants->Get("RollerMotorY")) * constants->Get("rollerMotorGain"), 0);
 		}
 		else{
 			ShootIntake->RollerMotor->Set(0);
