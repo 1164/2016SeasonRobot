@@ -9,6 +9,7 @@
 #include <Encoder.h>
 #include <VictorSP.h>
 #include <DigitalInput.h>
+#include <Solenoid.h>
 
 #define CARRY	0
 #define SHOOT 	2
@@ -22,6 +23,10 @@ private:
 	int state;
 	Constants *constants;
 	Encoder *shooterEncoder;
+
+	Solenoid *flipper1;
+	Solenoid *flipper2;
+
 
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
